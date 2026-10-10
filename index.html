@@ -94,6 +94,12 @@
               <a class="figure-image-link" href="assets/teaser.webp" target="_blank" rel="noopener" aria-label="Open figure at full size"><img src="assets/teaser.webp" alt="A spatial question about a living-room scene, followed by QA-only fusion, feature alignment, and GeoReader's two training stages." width="1620" height="843" /></a>
               <p class="figure-note"><strong>Figure 1.</strong> Three routes from RGB and estimated geometry to a spatial answer. <span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span> first makes geometric tokens readable to the VLM, then trains the VLM to use them.</p>
             </div>
+            <p>For example, zeroing the latents of a released feature-alignment checkpoint (3DThinker) leaves its MindCube-Tiny accuracy essentially unchanged (62.7 → 62.9), and its answer tokens barely attend to those latents (Figure 2).</p>
+              <div class="figure-frame visual-figure">
+
+                <a class="figure-image-link" href="assets/answer-attention.webp" target="_blank" rel="noopener" aria-label="Open answer-token attention figure at full size"><img src="assets/answer-attention.webp" alt="A four-view shoe question and layerwise attention-share curves for geometry, RGB, and question tokens, comparing GeoReader with feature alignment." width="1194" height="501" loading="lazy" decoding="async" /></a>
+                <p class="figure-note"><strong>Figure 2.</strong> On this MindCube-Tiny question, <span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span>'s answer tokens attend more to geometric tokens than the feature-alignment model's answer tokens attend to its latents.</p>
+              </div>
 
           </section>
 
@@ -104,7 +110,7 @@
             <div class="figure-frame method-frame">
 
               <a class="figure-image-link" href="assets/method.webp" target="_blank" rel="noopener" aria-label="Open figure at full size"><img src="assets/method.webp" alt="Method overview: description prediction trains camera and depth Geometric Readers through a frozen VLM; a read pass controls the injector before the answer pass." width="1500" height="675" loading="lazy" decoding="async" /></a>
-              <p class="figure-note"><strong>Figure 2.</strong> Geometry descriptions are training targets in Stage 1. At inference, the model answers from continuous geometric tokens.</p>
+              <p class="figure-note"><strong>Figure 3.</strong> Geometry descriptions are training targets in Stage 1. At inference, the model answers from continuous geometric tokens.</p>
             </div>
             <h3 class="sub-title">Two stages, one readable interface</h3>
             <ol class="stage-list">
@@ -121,7 +127,7 @@
               <div class="figure-frame data-frame">
 
                 <a class="figure-image-link" href="assets/stage2-data.webp" target="_blank" rel="noopener" aria-label="Open Stage 2 QA data figure at full size"><img src="assets/stage2-data.webp" alt="Stage 2 QA collection: representative RGB views, the proportions of fourteen RGB sources in approximately 135K questions, and common spatial words in question stems." width="1488" height="1118" loading="lazy" decoding="async" /></a>
-                <p class="figure-note"><strong>Figure 3.</strong> The QA collection contains approximately 135K questions across 14 RGB sources. The photos illustrate these sources; their displayed sizes do not show source frequency.</p>
+                <p class="figure-note"><strong>Figure 4.</strong> The QA collection contains approximately 135K questions across 14 RGB sources. The photos illustrate these sources; their displayed sizes do not show source frequency.</p>
               </div>
           </section>
 
@@ -234,12 +240,7 @@
             <p class="table-caption"><strong>Table 3.</strong> MindCube-Tiny accuracy (%) under geometry interventions with Qwen2.5-VL-3B. <span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span> uses annotation-derived camera geometry; feature alignment is the released first-stage 3DThinker checkpoint, whose latents are zeroed or swapped across questions. Only <span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span> drops markedly.</p>
 
             <h3 class="sub-title">Answer-token attention</h3>
-            <p>The attention plots show where answer tokens look in questions that both models answer correctly. Geometry-content interventions test whether <span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span>'s answers depend on its tokens.</p>
-              <div class="figure-frame visual-figure">
-
-                <a class="figure-image-link" href="assets/answer-attention.webp" target="_blank" rel="noopener" aria-label="Open answer-token attention figure at full size"><img src="assets/answer-attention.webp" alt="A four-view shoe question and layerwise attention-share curves for geometry, RGB, and question tokens, comparing GeoReader with feature alignment." width="1194" height="501" loading="lazy" decoding="async" /></a>
-                <p class="figure-note"><strong>Figure 4.</strong> On this MindCube-Tiny question, <span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span>'s answer tokens attend more to geometric tokens than the feature-alignment model's answer tokens attend to its latents.</p>
-              </div>
+            <p>The attention plots show where answer tokens look in questions that both models answer correctly; Figure 2 in the motivation shows one example, and the curves below cover one question from each MindCube-Tiny category. Geometry-content interventions test whether <span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span>'s answers depend on its tokens.</p>
               <details class="figure-disclosure">
                 <summary>More attention curves · three question categories</summary>
                 <div class="figure-frame visual-figure">

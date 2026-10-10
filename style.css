@@ -122,3 +122,5 @@ h1,h2{font-weight:700;letter-spacing:-.03em}.visualizations h3,.results h3{font-
 .table-wrap{overflow:visible}.result-table{width:100%;table-layout:auto}
 .result-table td:first-child,.result-table th:first-child{white-space:normal}
 .ablation-tables .result-table td,.ablation-tables .result-table th{padding-left:12px;padding-right:12px}
+/* 图后紧接的正文段落留出与图前相同的间距（Motivation 里 Figure 1 后的证据句不再贴着图框）。 */
+.figure-frame+p{margin-top:28px!important}
