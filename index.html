@@ -14,10 +14,10 @@
     <header class="topbar">
       <a class="brand" href="#top" aria-label="GeoReader, back to top"><span>Geo</span><span>Reader</span><i aria-hidden="true"></i></a>
       <nav class="topnav" aria-label="Main navigation">
-        <a href="#question">The question</a>
-        <a href="#idea">The idea</a>
-        <a href="#method">The method</a>
-        <a href="#authors">Authors</a>
+        <a href="#question">Story</a>
+        <a href="#method">Method</a>
+        <a href="#data">Training data</a>
+        <a href="#evidence">Evidence</a>
       </nav>
       <div class="top-resources">
         <a class="top-paper" href="https://github.com/iris0329/GeoReader" target="_blank" rel="noopener noreferrer" aria-label="GeoReader code on GitHub">Code ↗</a>
@@ -36,7 +36,7 @@
           <a class="button button-outline resource-button" href="https://github.com/iris0329/GeoReader" target="_blank" rel="noopener noreferrer"><span class="resource-icon resource-icon-code" aria-hidden="true">&lt;/&gt;</span> Code <span aria-hidden="true">↗</span></a>
           <span class="button button-outline button-unavailable resource-button" aria-label="arXiv paper link coming soon"><span class="resource-icon resource-icon-arxiv" aria-hidden="true">a</span> arXiv soon</span>
         </div>
-        <div class="hero-index" aria-hidden="true"><span>01 / 04</span><span>SCROLL TO EXPLORE</span></div>
+        <div class="hero-index" aria-hidden="true"><span>01 / 05</span><span>SCROLL TO EXPLORE</span></div>
       </section>
 
       <div class="story page-width">
@@ -45,7 +45,8 @@
           <a href="#question" class="active">01 &nbsp; The question</a>
           <a href="#idea">02 &nbsp; The idea</a>
           <a href="#method">03 &nbsp; The method</a>
-          <a href="#evidence">04 &nbsp; The evidence</a>
+          <a href="#data">04 &nbsp; Training data</a>
+          <a href="#evidence">05 &nbsp; The evidence</a>
           <a href="#authors">Authors &amp; citation</a>
         </aside>
 
@@ -105,11 +106,12 @@
               <img src="assets/method.png" alt="Method overview: description prediction trains camera and depth Geometric Readers through a frozen VLM; a read pass controls the injector before the answer pass." width="1500" height="675" />
               <p class="figure-note">Geometry descriptions are training targets in Stage 1. At inference, the model answers from continuous geometric tokens.</p>
             </div>
+          </section>
 
-            <div class="training-data" aria-labelledby="training-data-title">
-              <span class="section-label">THE TRAINING DATA</span>
-              <h3 id="training-data-title">From geometry descriptions to spatial QA.</h3>
-              <p>Stage 1 uses RGB view windows with camera poses, depth maps, and geometry descriptions. Stage 2 trains question answering on a separate collection of approximately 135K examples from multiple RGB sources.</p>
+          <section id="data" class="section training-data" aria-labelledby="training-data-title">
+              <span class="section-label">04 — TRAINING DATA</span>
+              <h2 id="training-data-title">From geometry descriptions <em>to spatial QA.</em></h2>
+              <p class="lead">Stage 1 uses RGB view windows with camera poses, depth maps, and geometry descriptions. Stage 2 trains question answering on a separate collection of approximately 135K examples from multiple RGB sources.</p>
 
               <div class="figure-frame data-frame">
                 <div class="figure-toolbar"><span class="figure-number">SUPPLEMENTARY FIGURE</span><span class="figure-title">STAGE 1 · GEOMETRY-DESCRIPTION EXAMPLES</span><a href="assets/stage1-data.png" target="_blank" rel="noopener">Open image ↗</a></div>
@@ -122,11 +124,10 @@
                 <a class="figure-image-link" href="assets/stage2-data.png" target="_blank" rel="noopener" aria-label="Open Stage 2 QA data figure at full size"><img src="assets/stage2-data.png" alt="Stage 2 QA collection: representative RGB examples, the proportions of fourteen RGB sources in approximately 135K questions, and common spatial words in question stems." width="1488" height="1118" loading="lazy" decoding="async" /></a>
                 <p class="figure-note">The approximately 135K-example QA collection spans 14 RGB sources. The photos are examples; their displayed sizes do not show source frequency.</p>
               </div>
-            </div>
           </section>
 
           <section id="evidence" class="section" aria-labelledby="evidence-title">
-            <span class="section-label">04 — THE EVIDENCE</span>
+            <span class="section-label">05 — THE EVIDENCE</span>
             <h2 id="evidence-title">Test what geometry <em>changes.</em></h2>
             <p class="lead">The paper tests the interface at three points: what the Reader learns, whether answers use its tokens, and how the full system performs on spatial QA.</p>
             <div class="evidence-list">
