@@ -51,7 +51,7 @@ h1,h2{font-weight:700;letter-spacing:-.03em}.visualizations h3,.results h3{font-
 @media(max-width:640px){.author-grid{grid-template-columns:1fr;gap:10px;margin-top:24px}.author-card{min-height:92px;padding:12px 14px}.author-card-name{font-size:15.5px}}
 .author-card-name sup{font-size:.64em;font-weight:700;color:var(--green);margin-left:1px}
 /* Balance heading and label sizes so section labels remain legible beside their titles. */
-.section h2{font-size:clamp(32px,3vw,44px);line-height:1.15;margin-bottom:20px}
+.section h2{font-size:clamp(30px,2.5vw,36px);line-height:1.15;margin-bottom:20px}
 .section-label{font-size:18px;letter-spacing:.08em;margin-bottom:14px}
 .section p{font-size:17.5px}.section p.lead{font-size:20px;line-height:1.6}
 .visualizations h3,.results h3,.supplementary-visuals h3{font-size:clamp(25px,2.2vw,32px)}
@@ -115,7 +115,7 @@ h1,h2{font-weight:700;letter-spacing:-.03em}.visualizations h3,.results h3{font-
 /* Wrap long BibTeX fields at every viewport width while keeping their original copyable text. */
 #citation{white-space:pre-wrap;overflow-wrap:anywhere;overflow:visible}
 /* Use the complete paper title as the only hero heading. */
-.hero h1.hero-paper-heading{display:block;max-width:1160px;margin:22px 0 30px;font-size:clamp(36px,3.4vw,48px);font-weight:700;line-height:1.16;letter-spacing:-.02em;text-wrap:balance}
+.hero h1.hero-paper-heading{display:block;max-width:1160px;margin:22px 0 30px;font-size:clamp(36px,2.9vw,40px);font-weight:700;line-height:1.16;letter-spacing:-.02em;text-wrap:balance}
 @media(max-width:640px){.hero h1.hero-paper-heading{font-size:clamp(27px,7.5vw,32px);line-height:1.17;margin:18px 0 26px}}
 /* Match the paper's bold two-color method name in prose, captions, and tables. */
 .wordmark{font-weight:800;white-space:nowrap}.wordmark-geo{color:var(--orange)}.wordmark-reader{color:var(--green)}
