@@ -16,7 +16,7 @@
     <meta name="twitter:title" content="GeoReader: Learning Latent Geometry for Spatial Reasoning in Vision-Language Models" />
     <meta name="twitter:image" content="https://iris0329.github.io/georeader-homepage/assets/teaser.webp" />
     <link rel="icon" href="assets/favicon-r.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css?rev=plain-list-20261010" />
     <script src="main.js" defer></script>
   </head>
   <body>
@@ -108,24 +108,8 @@
             </div>
             <h3 class="sub-title">Two stages, one readable interface</h3>
             <ol class="stage-list">
-              <li class="stage-one">
-                <span class="stage-number" aria-hidden="true">01</span>
-                <div class="stage-copy">
-                  <span class="stage-tag">LEARN TO EXPRESS</span>
-                  <h4>Learn a readable interface</h4>
-                  <p>Geometry foundation models estimate camera poses and depth maps from RGB. Geometric Readers turn these signals into tokens. Description prediction trains each Reader through a frozen VLM.</p>
-                  <span class="stage-status">Reader trained <span aria-hidden="true">·</span> VLM frozen</span>
-                </div>
-              </li>
-              <li class="stage-two">
-                <span class="stage-number" aria-hidden="true">02</span>
-                <div class="stage-copy">
-                  <span class="stage-tag">LEARN TO ANSWER</span>
-                  <h4>Preserve the interface</h4>
-                  <p>The Readers stay frozen. A read pass gathers the question context; the geometry injector uses it to modulate geometric tokens. The answer pass then uses those tokens for spatial QA.</p>
-                  <span class="stage-status">Reader frozen <span aria-hidden="true">·</span> VLM adapted</span>
-                </div>
-              </li>
+              <li><strong>Learn a readable interface.</strong> Geometry foundation models estimate camera poses and depth maps from RGB. Geometric Readers turn these signals into tokens. Description prediction trains each Reader through a frozen VLM.</li>
+              <li><strong>Preserve the interface for QA.</strong> The Readers stay frozen. A read pass gathers the question context; the geometry injector uses it to modulate geometric tokens. The answer pass then uses those tokens for spatial QA.</li>
             </ol>
           </section>
 
