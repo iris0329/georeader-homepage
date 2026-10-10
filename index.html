@@ -281,7 +281,7 @@
                 <div class="table-wrap">
                   <table class="result-table">
                     <caption>Reader training on MindCube-Tiny (Qwen2.5-VL-3B, annotated geometry).</caption>
-                    <thead><tr><th>Geometric interface</th><th>Acc.</th></tr></thead>
+                    <thead><tr><th>Geometric interface</th><th>Acc. ↑</th></tr></thead>
                     <tbody>
                       <tr><td>No Stage 1 (QA loss only)</td><td>54.7</td></tr>
                       <tr><td>Feature alignment (released)</td><td>62.7</td></tr>
@@ -293,7 +293,7 @@
                 <div class="table-wrap">
                   <table class="result-table">
                     <caption>Injection design on MindCube-Tiny (Qwen2.5-VL-3B, annotated geometry).</caption>
-                    <thead><tr><th>Injection design</th><th>Acc.</th></tr></thead>
+                    <thead><tr><th>Injection design</th><th>Acc. ↑</th></tr></thead>
                     <tbody>
                       <tr><td>Direct</td><td>78.6</td></tr>
                       <tr><td>Learned fixed scaling</td><td>68.5</td></tr>
@@ -304,7 +304,7 @@
                 <div class="table-wrap">
                   <table class="result-table">
                     <caption>Text versus continuous geometry on MindCube-Tiny: accuracy, generated tokens, and latency.</caption>
-                    <thead><tr><th>Recipe</th><th>Acc.</th><th>Tokens</th><th>Time (s)</th></tr></thead>
+                    <thead><tr><th>Recipe</th><th>Acc. ↑</th><th>Tokens</th><th>Time (s) ↓</th></tr></thead>
                     <tbody>
                       <tr><td>Vanilla SFT</td><td>68.6</td><td>16.2</td><td>0.5</td></tr>
                       <tr><td>Joint description + QA SFT</td><td>67.0</td><td>16.3</td><td>0.5</td></tr>
@@ -326,9 +326,7 @@
                 <a class="figure-image-link" href="assets/spatial-visualization.webp" target="_blank" rel="noopener" aria-label="Open spatial-answer visualization at full size"><img src="assets/spatial-visualization.webp" alt="Two MMSI-Bench cross-view questions answered correctly by GeoReader, with RGB views, questions, answers, and predicted-depth point clouds highlighting queried objects." width="1194" height="654" loading="lazy" decoding="async" /></a>
                 <p class="figure-note"><strong>Figure 6.</strong> Two correct MMSI-Bench answers with DA3 geometry. The point clouds on the right come from predicted depth; circles identify the objects named in each question.</p>
               </div>
-              <details class="figure-disclosure">
-                <summary>More spatial QA cases · correct answers and failures</summary>
-                <div class="supplementary-visuals" aria-labelledby="supplementary-visuals-title">
+              <div class="supplementary-visuals" aria-labelledby="supplementary-visuals-title">
                   <h3 id="supplementary-visuals-title" class="sub-title">More correct answers</h3>
                   <div class="visual-panel">
                     <div class="figure-frame visual-figure">
@@ -345,8 +343,7 @@
                       <p class="figure-note"><strong>Figure 8.</strong> Three failure cases show an incorrect predicted pose, reversed depth order, and an answer that matches another reference view.</p>
                     </div>
                   </div>
-                </div>
-              </details>
+              </div>
           </section>
 
           <section id="authors" class="section authors-section" aria-labelledby="authors-title">
