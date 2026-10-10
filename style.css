@@ -118,8 +118,8 @@ h1,h2{font-weight:700;letter-spacing:-.03em}.approach-panel h3,.stage-card h3,.v
 /* Wrap long BibTeX fields at every viewport width while keeping their original copyable text. */
 #citation{white-space:pre-wrap;overflow-wrap:anywhere;overflow:visible}
 /* Use the complete paper title as the only hero heading. */
-.hero h1.hero-paper-heading{display:block;max-width:1160px;margin:22px 0 30px;font-size:clamp(38px,4vw,56px);line-height:1.14;letter-spacing:-.028em;text-wrap:balance}
-@media(max-width:640px){.hero h1.hero-paper-heading{font-size:clamp(29px,8vw,36px);line-height:1.17;margin:18px 0 26px}}
+.hero h1.hero-paper-heading{display:block;max-width:1160px;margin:22px 0 30px;font-size:clamp(44px,4.7vw,68px);font-weight:700;line-height:1.1;letter-spacing:-.028em;text-wrap:balance}
+@media(max-width:640px){.hero h1.hero-paper-heading{font-size:clamp(32px,8.4vw,42px);line-height:1.14;margin:18px 0 26px}}
 /* Match the paper's bold two-color method name in prose, captions, and tables. */
 .wordmark{font-weight:800;white-space:nowrap}.wordmark-geo{color:var(--orange)}.wordmark-reader{color:var(--green)}
 /* Emphasize the abstract's observation, method handoff, headline results, and takeaway. */
