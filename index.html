@@ -101,16 +101,32 @@
             <span class="section-label">02 — METHOD</span>
             <h2 id="method-title">Learn geometry for <em>the model that reads it.</em></h2>
             <p class="lead">The receiving VLM helps define a useful geometric interface. A frozen VLM reads the Reader's tokens and predicts geometry descriptions; this language task trains the Reader to express spatial relationships the VLM can already decode.</p>
-            <h3 class="sub-title">Two stages, one readable interface</h3>
-            <div class="stage-grid">
-              <article class="stage-card stage-one"><span class="stage-number">01</span><span class="stage-tag">LEARN TO EXPRESS</span><h3>Learn a readable interface</h3><p>Geometry foundation models estimate camera poses and depth maps from RGB. Geometric Readers turn these signals into tokens. Description prediction trains each Reader through a frozen VLM.</p><div class="stage-footer"><span class="dot dot-orange"></span> Reader trained <span class="stage-sep">/</span> VLM frozen</div></article>
-              <article class="stage-card stage-two"><span class="stage-number">02</span><span class="stage-tag">LEARN TO ANSWER</span><h3>Preserve the interface</h3><p>The Readers stay frozen. A read pass gathers the question context; the geometry injector uses it to modulate geometric tokens. The answer pass then uses those tokens for spatial QA.</p><div class="stage-footer"><span class="dot dot-green"></span> Reader frozen <span class="stage-sep">/</span> VLM adapted</div></article>
-            </div>
             <div class="figure-frame method-frame">
 
               <a class="figure-image-link" href="assets/method.webp" target="_blank" rel="noopener" aria-label="Open figure at full size"><img src="assets/method.webp" alt="Method overview: description prediction trains camera and depth Geometric Readers through a frozen VLM; a read pass controls the injector before the answer pass." width="1500" height="675" loading="lazy" decoding="async" /></a>
               <p class="figure-note"><strong>Figure 2.</strong> Geometry descriptions are training targets in Stage 1. At inference, the model answers from continuous geometric tokens.</p>
             </div>
+            <h3 class="sub-title">Two stages, one readable interface</h3>
+            <ol class="stage-list">
+              <li class="stage-one">
+                <span class="stage-number" aria-hidden="true">01</span>
+                <div class="stage-copy">
+                  <span class="stage-tag">LEARN TO EXPRESS</span>
+                  <h4>Learn a readable interface</h4>
+                  <p>Geometry foundation models estimate camera poses and depth maps from RGB. Geometric Readers turn these signals into tokens. Description prediction trains each Reader through a frozen VLM.</p>
+                  <span class="stage-status">Reader trained <span aria-hidden="true">·</span> VLM frozen</span>
+                </div>
+              </li>
+              <li class="stage-two">
+                <span class="stage-number" aria-hidden="true">02</span>
+                <div class="stage-copy">
+                  <span class="stage-tag">LEARN TO ANSWER</span>
+                  <h4>Preserve the interface</h4>
+                  <p>The Readers stay frozen. A read pass gathers the question context; the geometry injector uses it to modulate geometric tokens. The answer pass then uses those tokens for spatial QA.</p>
+                  <span class="stage-status">Reader frozen <span aria-hidden="true">·</span> VLM adapted</span>
+                </div>
+              </li>
+            </ol>
           </section>
 
           <section id="data" class="section training-data" aria-labelledby="training-data-title">
