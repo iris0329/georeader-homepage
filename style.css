@@ -55,3 +55,17 @@ h1,h2{font-weight:700;letter-spacing:-.03em}.hero-paper-title{letter-spacing:0}.
 .result-table{font-size:15px}.result-table caption{font-size:13.5px}.result-table thead th{font-size:12px}
 .author-affils{font-size:15px}.author-notes{font-size:13.5px}.citation-head{font-size:12px}pre{font-size:13px}
 @media(max-width:640px){.section h2{font-size:clamp(27px,7.4vw,34px)}.section-label{font-size:13px}.section p{font-size:16px}.section p.lead{font-size:18px}.figure-toolbar{font-size:10.5px}.figure-frame p.figure-note{font-size:13.5px}.result-table{font-size:13.5px}pre{font-size:11px}}
+/* 论文同款结果表（Table 1/2）：每块最优加粗并用浅橙底，次优浅灰底；块标题行用浅绿底；GeoReader 行只把名字着色，不再整行铺底，避免盖住最优/次优标记。 */
+.sub-title{font-size:clamp(21px,1.7vw,25px)!important;font-weight:700;letter-spacing:-.01em;margin:44px 0 6px;color:var(--ink)}
+.paper-table td,.paper-table th{padding:9px 14px}.paper-table td.best{font-weight:800;background:#ffeedd;color:#18372f}.paper-table td.second{background:#eceeeb}
+.paper-table tr.block-head td{background:#eef4ef;color:var(--forest);font-weight:800;font-size:12.5px;letter-spacing:.06em;text-align:left;padding:8px 14px}
+.paper-table tr.block-gap td{padding:0;height:0;border-bottom:1.5px solid #c9d8cb}
+.paper-table tr.ours td{background:transparent;color:inherit;font-weight:inherit}.paper-table tr.ours td.best{background:#ffeedd;font-weight:800}.paper-table tr.ours td.second{background:#eceeeb}
+.ours-name{font-weight:800;color:var(--green)}.paper-table .muted{color:#8a9a8f;font-size:.88em}.paper-table sup{font-size:.7em}
+.section p.table-caption{font-size:14px;line-height:1.6;color:#6c7e72;max-width:none;margin:12px 2px 0}
+.key{padding:1px 6px;border-radius:4px}.key-best{background:#ffeedd;font-weight:800;color:#18372f}.key-second{background:#eceeeb}
+.ablation-tables{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:1100px){.ablation-tables{grid-template-columns:1fr}}
+/* 三张消融表：前两张并排，第三张（4 列）独占一行，避免 Tokens / Time 列被挤出可视区。 */
+.ablation-tables{grid-template-columns:repeat(2,minmax(0,1fr))}.ablation-tables>.table-wrap:last-child{grid-column:1/-1}
+@media(max-width:900px){.ablation-tables{grid-template-columns:1fr}}

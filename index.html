@@ -23,12 +23,12 @@
     <header class="topbar">
       <a class="brand" href="#top" aria-label="GeoReader, back to top"><span>Geo</span><span>Reader</span><i aria-hidden="true"></i></a>
       <nav class="topnav" aria-label="Main navigation">
-        <a href="#question">Story</a>
+        <a href="#question">Motivation</a>
         <a href="#method">Method</a>
-        <a href="#data">Training data</a>
-        <a href="#evidence">Evidence</a>
+        <a href="#data">Data</a>
         <a href="#results">Results</a>
-        <a href="#attention">Attention</a>
+        <a href="#use">Analysis</a>
+        <a href="#ablations">Ablations</a>
         <a href="#examples">Examples</a>
       </nav>
       <div class="top-resources">
@@ -68,13 +68,12 @@
         <aside class="contents" aria-label="On this page">
           <span class="contents-label">CONTENTS</span>
           <a href="#abstract" class="active">Abstract</a>
-          <a href="#question">01 &nbsp; The question</a>
-          <a href="#idea">02 &nbsp; The idea</a>
-          <a href="#method">03 &nbsp; The method</a>
-          <a href="#data">04 &nbsp; Training data</a>
-          <a href="#evidence">05 &nbsp; The evidence</a>
-          <a href="#results">Results</a>
-          <a href="#attention">06 &nbsp; Attention</a>
+          <a href="#question">01 &nbsp; Motivation</a>
+          <a href="#method">02 &nbsp; Method</a>
+          <a href="#data">03 &nbsp; Training data</a>
+          <a href="#results">04 &nbsp; Main results</a>
+          <a href="#use">05 &nbsp; Use of geometry</a>
+          <a href="#ablations">06 &nbsp; Ablations</a>
           <a href="#examples">07 &nbsp; Examples</a>
           <a href="#authors">Authors &amp; citation</a>
         </aside>
@@ -86,7 +85,7 @@
           </section>
 
           <section id="question" class="section" aria-labelledby="question-title">
-            <span class="section-label">01 — THE QUESTION</span>
+            <span class="section-label">01 — MOTIVATION</span>
             <h2 id="question-title">When a model has geometry, <em>does it actually use it?</em></h2>
             <p class="lead">Spatial questions about distance, viewpoint, and camera motion need more than a good image representation. They need geometry that participates in the answer.</p>
             <p>Existing approaches either fuse estimated geometric features into the VLM during question answering, or use those features to supervise intermediate representations. Both can capture geometry. Yet capturing it does not by itself show that the answer depends on it.</p>
@@ -96,13 +95,8 @@
               <img src="assets/teaser.webp" alt="A spatial question about a living-room scene, followed by QA-only fusion, feature alignment, and GeoReader's two training stages." width="1620" height="843" />
               <p class="figure-note">Three routes from RGB and estimated geometry to a spatial answer. GeoReader first makes geometric tokens readable to the VLM, then trains the VLM to use them.</p>
             </div>
-          </section>
 
-          <section id="idea" class="section" aria-labelledby="idea-title">
-            <span class="section-label">02 — THE IDEA</span>
-            <h2 id="idea-title">Learn geometry for <em>the model that reads it.</em></h2>
-            <p class="lead">The receiving VLM helps define a useful geometric interface. A frozen VLM reads the Reader's tokens and predicts geometry descriptions; this language task trains the Reader to express spatial relationships the VLM can already decode.</p>
-
+            <h3 class="sub-title">Three ways to give a VLM geometry</h3>
             <div class="approach-tabs" role="tablist" aria-label="Compare geometric interfaces">
               <button type="button" role="tab" id="tab-fusion" aria-controls="panel-fusion" aria-selected="false" tabindex="-1" data-tab="fusion"><span>A</span> QA-only fusion</button>
               <button type="button" role="tab" id="tab-alignment" aria-controls="panel-alignment" aria-selected="false" tabindex="-1" data-tab="alignment"><span>B</span> Feature alignment</button>
@@ -129,8 +123,10 @@
           </section>
 
           <section id="method" class="section" aria-labelledby="method-title">
-            <span class="section-label">03 — THE METHOD</span>
-            <h2 id="method-title">Two stages. <em>One readable interface.</em></h2>
+            <span class="section-label">02 — METHOD</span>
+            <h2 id="method-title">Learn geometry for <em>the model that reads it.</em></h2>
+            <p class="lead">The receiving VLM helps define a useful geometric interface. A frozen VLM reads the Reader's tokens and predicts geometry descriptions; this language task trains the Reader to express spatial relationships the VLM can already decode.</p>
+            <h3 class="sub-title">Two stages, one readable interface</h3>
             <div class="stage-grid">
               <article class="stage-card stage-one"><span class="stage-number">01</span><span class="stage-tag">LEARN TO EXPRESS</span><h3>Learn a readable interface</h3><p>Geometry foundation models estimate camera poses and depth maps from RGB. Geometric Readers turn these signals into tokens. Description prediction trains each Reader through a frozen VLM.</p><div class="stage-footer"><span class="dot dot-orange"></span> Reader trained <span class="stage-sep">/</span> VLM frozen</div></article>
               <article class="stage-card stage-two"><span class="stage-number">02</span><span class="stage-tag">LEARN TO ANSWER</span><h3>Preserve the interface</h3><p>The Readers stay frozen. A read pass gathers the question context; the geometry injector uses it to modulate geometric tokens. The answer pass then uses those tokens for spatial QA.</p><div class="stage-footer"><span class="dot dot-green"></span> Reader frozen <span class="stage-sep">/</span> VLM adapted</div></article>
@@ -143,7 +139,7 @@
           </section>
 
           <section id="data" class="section training-data" aria-labelledby="training-data-title">
-              <span class="section-label">04 — TRAINING DATA</span>
+              <span class="section-label">03 — TRAINING DATA</span>
               <h2 id="training-data-title">From geometry descriptions <em>to spatial QA.</em></h2>
               <p class="lead">Stage 1 uses RGB view windows with camera poses, depth maps, and geometry descriptions. Stage 2 trains question answering on a separate collection of approximately 135K examples from multiple RGB sources.</p>
 
@@ -160,44 +156,131 @@
               </div>
           </section>
 
-          <section id="evidence" class="section" aria-labelledby="evidence-title">
-            <span class="section-label">05 — THE EVIDENCE</span>
-            <h2 id="evidence-title">Test what geometry <em>changes.</em></h2>
-            <p class="lead">The paper tests the interface at three points: what the Reader learns, whether answers use its tokens, and how the full system performs on spatial QA.</p>
-            <div class="evidence-list">
-              <div><span>01 / READABILITY</span><p>Compare description-supervised Readers with training recipes that do not first establish a readable interface.</p></div>
-              <div><span>02 / USE</span><p>Remove or shuffle geometry content and examine how answers change under controlled settings.</p></div>
-              <div><span>03 / SPATIAL QA</span><p>Evaluate across seven spatial reasoning benchmarks and three VLM families, including comparisons with vanilla SFT, the same QA fine-tuning without geometry.</p></div>
-            </div>
-
-            <div id="results" class="results" aria-labelledby="results-title">
-              <span class="section-label">RESULTS</span>
-              <h3 id="results-title">What the numbers show.</h3>
-              <div class="metric-grid">
+          <section id="results" class="section" aria-labelledby="results-title">
+            <span class="section-label">04 — MAIN RESULTS</span>
+            <h2 id="results-title">What the numbers <em>show.</em></h2>
+            <p class="lead">GeoReader is evaluated on seven spatial reasoning benchmarks with three VLM families, using geometry predicted from RGB by Depth Anything 3.</p>
+            <div class="metric-grid">
                 <div class="metric"><strong>94.3</strong><span>MindCube-Tiny accuracy (%)</span><small>Qwen3-VL-4B with geometry predicted from RGB by Depth Anything 3.</small></div>
                 <div class="metric"><strong>71.8</strong><span>Average over six spatial benchmarks (%)</span><small>Qwen3.5-9B on VSI-Bench, SPBench, CV-Bench, SPAR-Bench, ViewSpatial, and MMSI-Bench.</small></div>
+            </div>
+
+            <h3 class="sub-title">Table 1 · MindCube-Tiny</h3>
+            <div class="table-wrap">
+<table class="result-table paper-table">
+<thead><tr><th>Method</th><th>Rot.</th><th>Among</th><th>Around</th><th>Overall ↑</th></tr></thead>
+<tbody>
+<tr class="block-head"><td colspan="5">API models</td></tr>
+<tr><td>GPT-4.1</td><td>45.5</td><td class="second">44.2</td><td>47.2</td><td>45.1</td></tr>
+<tr><td>Doubao-Seed-1.6 <span class="muted">(230B)</span></td><td class="second">87.0</td><td>35.8</td><td>38.0</td><td>46.1</td></tr>
+<tr><td>Gemini-2.5-Pro</td><td>84.0</td><td>39.7</td><td>56.8</td><td>52.2</td></tr>
+<tr><td>MiMo-V2.6-Flash <span class="muted">(309B)</span></td><td>81.0</td><td>41.3</td><td>64.8</td><td>54.5</td></tr>
+<tr><td>OpenAI o3</td><td>86.5</td><td>42.7</td><td class="second">66.0</td><td class="second">56.6</td></tr>
+<tr><td>DeepSeek-Flash (thinking) <span class="muted">(552B)</span></td><td class="best">89.5</td><td class="best">58.3</td><td class="best">75.6</td><td class="best">68.4</td></tr>
+<tr class="block-head"><td colspan="5">Qwen2.5-VL · 3B</td></tr>
+<tr><td>Qwen2.5-VL</td><td>35.5</td><td>36.2</td><td>45.6</td><td>38.3</td></tr>
+<tr><td>HATCH</td><td>31.0</td><td>50.2</td><td>65.6</td><td>50.2</td></tr>
+<tr><td>SenseNova-SI</td><td>–</td><td>–</td><td>–</td><td>52.6</td></tr>
+<tr><td>DR-MV3D</td><td class="second">43.0</td><td>71.3</td><td>73.6</td><td>66.5</td></tr>
+<tr><td>3DThinker</td><td class="best">55.5</td><td class="second">81.8</td><td class="second">75.2</td><td class="second">75.2</td></tr>
+<tr class="ours"><td><span class="ours-name">GeoReader</span></td><td>40.5</td><td class="best">90.3</td><td class="best">91.6</td><td class="best">81.1</td></tr>
+<tr class="block-head"><td colspan="5">Qwen2.5-VL · 7B</td></tr>
+<tr><td>Qwen2.5-VL</td><td>35.0</td><td>33.2</td><td>38.4</td><td>34.8</td></tr>
+<tr><td>SenseNova-SI</td><td>–</td><td>–</td><td>–</td><td>54.7</td></tr>
+<tr><td>3DThinker</td><td class="second">55.0</td><td class="second">83.0</td><td class="second">76.0</td><td class="second">76.0</td></tr>
+<tr class="ours"><td><span class="ours-name">GeoReader</span></td><td class="best">90.0</td><td class="best">94.7</td><td class="best">92.4</td><td class="best">93.2</td></tr>
+<tr class="block-head"><td colspan="5">Qwen3-VL · 2B</td></tr>
+<tr><td>Qwen3-VL</td><td>29.5</td><td>33.3</td><td>47.2</td><td>35.9</td></tr>
+<tr><td>Spatial-TTT</td><td class="second">55.5</td><td>74.0</td><td class="second">89.8</td><td class="second">76.2</td></tr>
+<tr><td>3DThinker</td><td>53.0</td><td class="second">83.2</td><td>78.4</td><td class="second">76.2</td></tr>
+<tr class="ours"><td><span class="ours-name">GeoReader</span></td><td class="best">59.5</td><td class="best">93.3</td><td class="best">91.6</td><td class="best">86.5</td></tr>
+<tr class="block-head"><td colspan="5">Qwen3-VL · 4B</td></tr>
+<tr><td>Qwen3-VL</td><td>25.0</td><td>25.3</td><td>43.6</td><td>29.6</td></tr>
+<tr><td>3DThinker</td><td class="second">55.0</td><td class="second">81.7</td><td class="second">78.4</td><td class="second">75.8</td></tr>
+<tr class="ours"><td><span class="ours-name">GeoReader</span></td><td class="best">94.5</td><td class="best">96.2</td><td class="best">89.6</td><td class="best">94.3</td></tr>
+<tr class="block-head"><td colspan="5">Qwen3-VL · 8B</td></tr>
+<tr><td>Qwen3-VL</td><td>42.0</td><td>32.3</td><td>51.2</td><td>38.7</td></tr>
+<tr><td>SenseNova-SI</td><td class="second">79.5</td><td>73.2</td><td>70.4</td><td>73.8</td></tr>
+<tr><td>3DThinker</td><td>56.5</td><td class="second">82.5</td><td class="second">78.8</td><td>76.7</td></tr>
+<tr><td>GAMSI</td><td>–</td><td>–</td><td>–</td><td class="best">94.1</td></tr>
+<tr class="ours"><td><span class="ours-name">GeoReader</span></td><td class="best">91.5</td><td class="best">93.3</td><td class="best">95.2</td><td class="second">93.4</td></tr>
+</tbody>
+</table>
+            </div>
+            <p class="table-caption">MindCube-Tiny accuracy (%). Per API or backbone-size block, <span class="key key-best">bold</span> marks the best and <span class="key key-second">gray</span> the runner-up (only with ≥ 3 models; base rows unshaded). GeoReader scores highest in four of the five backbone blocks. Literature results are taken from the cited papers (paper Sec. A.3.4).</p>
+
+            <h3 class="sub-title">Table 2 · Six spatial benchmarks</h3>
+            <div class="table-wrap">
+<table class="result-table paper-table">
+<thead><tr><th>Method</th><th>VSI</th><th>SPBench</th><th>CV</th><th>SPAR</th><th>ViewSpatial</th><th>MMSI</th><th>Avg. ↑</th></tr></thead>
+<tbody>
+<tr class="block-head"><td colspan="8">Qwen2.5-VL family</td></tr>
+<tr><td>Qwen2.5-VL-3B<sup>†</sup></td><td>27.3</td><td>39.5</td><td>70.5</td><td>27.9</td><td>36.1</td><td>25.5</td><td>37.8</td></tr>
+<tr><td>Spatial-MLLM-4B</td><td>47.3</td><td>48.4</td><td>73.8</td><td>35.1</td><td>43.6</td><td>31.5</td><td>46.6</td></tr>
+<tr><td>SpatialLadder-3B</td><td>45.7</td><td class="best">70.6</td><td>73.7</td><td>34.4</td><td>44.2</td><td>29.2</td><td>49.6</td></tr>
+<tr><td>3DThinker-3B</td><td class="best">59.1</td><td>60.2</td><td class="second">78.4</td><td class="second">58.2</td><td class="second">64.7</td><td class="best">41.9</td><td class="second">60.4</td></tr>
+<tr class="block-gap"><td colspan="8"></td></tr>
+<tr class="ours"><td><span class="ours-name">GeoReader</span>-3B</td><td class="second">56.1</td><td class="second">70.0</td><td class="best">83.7</td><td class="best">59.1</td><td class="best">71.4</td><td class="second">41.2</td><td class="best">63.6</td></tr>
+<tr class="block-gap"><td colspan="8"></td></tr>
+<tr><td>Qwen2.5-VL-7B<sup>†</sup></td><td>29.9</td><td>40.8</td><td>77.9</td><td>33.2</td><td>34.7</td><td>26.8</td><td>40.5</td></tr>
+<tr><td>SpaceR-7B</td><td>44.5</td><td>54.0</td><td>75.3</td><td>37.1</td><td>45.5</td><td>28.8</td><td>47.5</td></tr>
+<tr><td>ViLaSR-7B</td><td>45.4</td><td>53.9</td><td>77.1</td><td>37.6</td><td>46.1</td><td>30.2</td><td>48.4</td></tr>
+<tr><td>Video-R1</td><td>33.4</td><td>42.8</td><td>69.6</td><td>31.5</td><td>36.1</td><td>29.4</td><td>40.5</td></tr>
+<tr><td>3DThinker-7B</td><td class="best">63.7</td><td class="second">68.3</td><td class="second">81.1</td><td class="best">63.3</td><td class="second">68.6</td><td class="second">43.3</td><td class="second">64.7</td></tr>
+<tr class="block-gap"><td colspan="8"></td></tr>
+<tr class="ours"><td><span class="ours-name">GeoReader</span>-7B</td><td class="second">58.0</td><td class="best">72.3</td><td class="best">84.4</td><td class="second">61.4</td><td class="best">75.6</td><td class="best">45.5</td><td class="best">66.2</td></tr>
+<tr class="block-head"><td colspan="8">Qwen3-VL family</td></tr>
+<tr><td>Qwen3-VL-4B<sup>†</sup></td><td>55.1</td><td>58.2</td><td>84.4</td><td>33.4</td><td>38.6</td><td>27.2</td><td>49.5</td></tr>
+<tr class="block-gap"><td colspan="8"></td></tr>
+<tr class="ours"><td><span class="ours-name">GeoReader</span>-4B</td><td class="best">64.8</td><td class="best">78.9</td><td class="best">85.6</td><td class="best">65.3</td><td class="best">77.4</td><td class="best">43.6</td><td class="best">69.3</td></tr>
+<tr class="block-gap"><td colspan="8"></td></tr>
+<tr><td>Qwen3-VL-8B<sup>†</sup></td><td>55.9</td><td>57.8</td><td>85.4</td><td>38.2</td><td>40.4</td><td>28.9</td><td>51.1</td></tr>
+<tr><td>SenseNova-SI-8B<sup>*</sup></td><td class="second">64.8</td><td class="second">65.8</td><td>83.4</td><td class="second">41.1</td><td class="second">51.2</td><td class="second">38.1</td><td class="second">57.4</td></tr>
+<tr class="block-gap"><td colspan="8"></td></tr>
+<tr class="ours"><td><span class="ours-name">GeoReader</span>-8B</td><td class="best">66.2</td><td class="best">76.7</td><td class="best">86.5</td><td class="best">65.7</td><td class="best">78.5</td><td class="best">46.6</td><td class="best">70.0</td></tr>
+<tr class="block-head"><td colspan="8">Qwen3.5 family</td></tr>
+<tr><td>Qwen3.5-4B<sup>†</sup></td><td>50.0</td><td>35.5</td><td class="best">84.9</td><td>34.4</td><td>34.5</td><td>28.1</td><td>44.6</td></tr>
+<tr class="block-gap"><td colspan="8"></td></tr>
+<tr class="ours"><td><span class="ours-name">GeoReader</span>-4B</td><td class="best">66.7</td><td class="best">81.5</td><td>81.8</td><td class="best">68.7</td><td class="best">77.7</td><td class="best">45.4</td><td class="best">70.3</td></tr>
+<tr class="block-gap"><td colspan="8"></td></tr>
+<tr><td>Qwen3.5-9B<sup>†</sup></td><td>54.1</td><td>50.7</td><td>85.9</td><td>42.1</td><td>38.2</td><td>32.0</td><td>50.5</td></tr>
+<tr class="block-gap"><td colspan="8"></td></tr>
+<tr class="ours"><td><span class="ours-name">GeoReader</span>-9B</td><td class="best">68.9</td><td class="best">80.4</td><td class="best">86.3</td><td class="best">70.4</td><td class="best">79.4</td><td class="best">45.4</td><td class="best">71.8</td></tr>
+</tbody>
+</table>
+            </div>
+            <p class="table-caption">Six-benchmark accuracy (%); Avg. is the mean. Per backbone-size block, <span class="key key-best">bold</span> marks the best and <span class="key key-second">gray</span> the runner-up (only with ≥ 3 models; base rows unshaded); <sup>†</sup> evaluated by us; <sup>*</sup> combined from two sources (paper Sec. A.3.4). GeoReader has the highest average in every block.</p>
+          </section>
+
+          <section id="use" class="section" aria-labelledby="use-title">
+            <span class="section-label">05 — DOES IT USE GEOMETRY?</span>
+            <h2 id="use-title">Answers that depend <em>on the geometry.</em></h2>
+            <p class="lead">With the checkpoint, RGB, and questions fixed, removing GeoReader's geometry or mismatching it to the views lowers accuracy, while the feature-alignment model barely changes.</p>
+            <div class="metric-grid">
                 <div class="metric"><strong>89.2 → 77.2 → 63.1</strong><span>GeoReader: correct, zeroed, shuffled geometry</span><small>Accuracy drops when geometry content is removed or poses no longer match the views.</small></div>
                 <div class="metric"><strong>62.7 → 62.9 / 61.5</strong><span>Feature alignment: correct, zeroed, swapped latents</span><small>The released checkpoint's accuracy barely changes when its latents are removed or swapped.</small></div>
-              </div>
+            </div>
               <p class="results-note">Intervention results use MindCube-Tiny and Qwen2.5-VL-3B; GeoReader uses annotation-derived camera geometry, and feature alignment is the released first-stage 3DThinker checkpoint.</p>
 
-              <div class="table-wrap">
-                <table class="result-table">
-                  <caption>Accuracy (%) of each base model and GeoReader. MindCube-Tiny results use Depth Anything 3 geometry (paper Tables 1 and 13); six-benchmark averages come from Table 2. “–” marks settings not reported.</caption>
-                  <thead><tr><th>Backbone</th><th>MindCube-Tiny<br />base → GeoReader</th><th>Six-benchmark avg.<br />base → GeoReader</th></tr></thead>
-                  <tbody>
-                    <tr><td>Qwen2.5-VL-3B</td><td>38.3 → <b>81.1</b></td><td>37.8 → <b>63.6</b></td></tr>
-                    <tr><td>Qwen2.5-VL-7B</td><td>34.8 → <b>93.2</b></td><td>40.5 → <b>66.2</b></td></tr>
-                    <tr><td>Qwen3-VL-2B</td><td>35.9 → <b>86.5</b></td><td>–</td></tr>
-                    <tr><td>Qwen3-VL-4B</td><td>29.6 → <b>94.3</b></td><td>49.5 → <b>69.3</b></td></tr>
-                    <tr><td>Qwen3-VL-8B</td><td>38.7 → <b>93.4</b></td><td>51.1 → <b>70.0</b></td></tr>
-                    <tr><td>Qwen3.5-4B</td><td>47.8 → <b>82.2</b></td><td>44.6 → <b>70.3</b></td></tr>
-                    <tr><td>Qwen3.5-9B</td><td>–</td><td>50.5 → <b>71.8</b></td></tr>
-                  </tbody>
-                </table>
+            <h3 class="sub-title">Answer-token attention</h3>
+            <p>The attention plots show where answer tokens look in questions that both models answer correctly. Geometry-content interventions test whether GeoReader's answers depend on its tokens.</p>
+              <div class="figure-frame visual-figure">
+                <div class="figure-toolbar"><span class="figure-number">FIGURE 03</span><span class="figure-title">ANSWER-TOKEN ATTENTION</span><a href="assets/answer-attention.webp" target="_blank" rel="noopener">Open image ↗</a></div>
+                <a class="figure-image-link" href="assets/answer-attention.webp" target="_blank" rel="noopener" aria-label="Open answer-token attention figure at full size"><img src="assets/answer-attention.webp" alt="A four-view shoe question and layerwise attention-share curves for geometry, RGB, and question tokens, comparing GeoReader with feature alignment." width="1194" height="501" loading="lazy" decoding="async" /></a>
+                <p class="figure-note">On this MindCube-Tiny example, GeoReader's answer tokens attend more to geometric tokens than the feature-alignment model's answer tokens attend to its latents.</p>
               </div>
+              <div class="figure-frame visual-figure">
+                <div class="figure-toolbar"><span class="figure-number">SUPPLEMENTARY FIGURE 09</span><span class="figure-title">AMONG · AROUND · ROTATION</span><a href="assets/attention-cases.webp" target="_blank" rel="noopener">Open image ↗</a></div>
+                <a class="figure-image-link" href="assets/attention-cases.webp" target="_blank" rel="noopener" aria-label="Open three attention cases at full size"><img src="assets/attention-cases.webp" alt="Three MindCube-Tiny examples with input images, questions, both models' correct answers, and layerwise attention shares for geometry, RGB, and question tokens." width="1194" height="1803" loading="lazy" decoding="async" /></a>
+                <p class="figure-note">One example from each MindCube-Tiny category. Both models answer all three correctly; the curves compare direct answer-token attention in these cases.</p>
+              </div>
+          </section>
 
-              <div class="results-tables">
+          <section id="ablations" class="section" aria-labelledby="ablations-title">
+            <span class="section-label">06 — WHAT MAKES IT WORK</span>
+            <h2 id="ablations-title">Readable, frozen, <em>and injected for the question.</em></h2>
+            <p class="lead">Ablations on MindCube-Tiny with Qwen2.5-VL-3B compare Reader training, injection designs, and text geometry with GeoReader's continuous tokens.</p>
+            <div class="results-tables ablation-tables">
                 <div class="table-wrap">
                   <table class="result-table">
                     <caption>Reader training on MindCube-Tiny (Qwen2.5-VL-3B, annotated geometry).</caption>
@@ -207,6 +290,17 @@
                       <tr><td>Feature alignment (released)</td><td>62.7</td></tr>
                       <tr><td>Readability pretraining, Reader tuned in QA</td><td>76.4</td></tr>
                       <tr class="ours"><td>GeoReader (Reader frozen)</td><td>89.2</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="table-wrap">
+                  <table class="result-table">
+                    <caption>Injection design on MindCube-Tiny (Qwen2.5-VL-3B, annotated geometry).</caption>
+                    <thead><tr><th>Injection design</th><th>Acc.</th></tr></thead>
+                    <tbody>
+                      <tr><td>Direct</td><td>78.6</td></tr>
+                      <tr><td>Learned fixed scaling</td><td>68.5</td></tr>
+                      <tr class="ours"><td>Geometry injector</td><td>89.2</td></tr>
                     </tbody>
                   </table>
                 </div>
@@ -223,25 +317,7 @@
                     </tbody>
                   </table>
                 </div>
-              </div>
             </div>
-
-          </section>
-
-          <section id="attention" class="section" aria-labelledby="attention-title">
-            <span class="section-label">06 — ANSWER-TOKEN ATTENTION</span>
-            <h2 id="attention-title">Where the answer <em>looks.</em></h2>
-            <p class="lead">The attention plots show where answer tokens look in questions that both models answer correctly. Geometry-content interventions test whether GeoReader's answers depend on its tokens.</p>
-              <div class="figure-frame visual-figure">
-                <div class="figure-toolbar"><span class="figure-number">FIGURE 03</span><span class="figure-title">ANSWER-TOKEN ATTENTION</span><a href="assets/answer-attention.webp" target="_blank" rel="noopener">Open image ↗</a></div>
-                <a class="figure-image-link" href="assets/answer-attention.webp" target="_blank" rel="noopener" aria-label="Open answer-token attention figure at full size"><img src="assets/answer-attention.webp" alt="A four-view shoe question and layerwise attention-share curves for geometry, RGB, and question tokens, comparing GeoReader with feature alignment." width="1194" height="501" loading="lazy" decoding="async" /></a>
-                <p class="figure-note">On this MindCube-Tiny example, GeoReader's answer tokens attend more to geometric tokens than the feature-alignment model's answer tokens attend to its latents.</p>
-              </div>
-              <div class="figure-frame visual-figure">
-                <div class="figure-toolbar"><span class="figure-number">SUPPLEMENTARY FIGURE 09</span><span class="figure-title">AMONG · AROUND · ROTATION</span><a href="assets/attention-cases.webp" target="_blank" rel="noopener">Open image ↗</a></div>
-                <a class="figure-image-link" href="assets/attention-cases.webp" target="_blank" rel="noopener" aria-label="Open three attention cases at full size"><img src="assets/attention-cases.webp" alt="Three MindCube-Tiny examples with input images, questions, both models' correct answers, and layerwise attention shares for geometry, RGB, and question tokens." width="1194" height="1803" loading="lazy" decoding="async" /></a>
-                <p class="figure-note">One example from each MindCube-Tiny category. Both models answer all three correctly; the curves compare direct answer-token attention in these cases.</p>
-              </div>
           </section>
 
           <section id="examples" class="section" aria-labelledby="examples-title">
