@@ -91,9 +91,9 @@
             <p>Existing approaches either fuse estimated geometric features into the VLM during question answering, or use those features to supervise intermediate representations. Both can capture geometry. Yet capturing it does not by itself show that the answer depends on it.</p>
 
             <div class="figure-frame teaser-frame">
-              <div class="figure-toolbar"><span class="figure-number">FIGURE 01</span><span class="figure-title">THE PROBLEM AND OUR CORE IDEA</span><a href="assets/teaser.webp" target="_blank" rel="noopener">Open image ↗</a></div>
-              <img src="assets/teaser.webp" alt="A spatial question about a living-room scene, followed by QA-only fusion, feature alignment, and GeoReader's two training stages." width="1620" height="843" />
-              <p class="figure-note">Three routes from RGB and estimated geometry to a spatial answer. GeoReader first makes geometric tokens readable to the VLM, then trains the VLM to use them.</p>
+
+              <a class="figure-image-link" href="assets/teaser.webp" target="_blank" rel="noopener" aria-label="Open figure at full size"><img src="assets/teaser.webp" alt="A spatial question about a living-room scene, followed by QA-only fusion, feature alignment, and GeoReader's two training stages." width="1620" height="843" /></a>
+              <p class="figure-note"><strong>Figure 1.</strong> Three routes from RGB and estimated geometry to a spatial answer. GeoReader first makes geometric tokens readable to the VLM, then trains the VLM to use them.</p>
             </div>
 
             <h3 class="sub-title">Three ways to give a VLM geometry</h3>
@@ -132,9 +132,9 @@
               <article class="stage-card stage-two"><span class="stage-number">02</span><span class="stage-tag">LEARN TO ANSWER</span><h3>Preserve the interface</h3><p>The Readers stay frozen. A read pass gathers the question context; the geometry injector uses it to modulate geometric tokens. The answer pass then uses those tokens for spatial QA.</p><div class="stage-footer"><span class="dot dot-green"></span> Reader frozen <span class="stage-sep">/</span> VLM adapted</div></article>
             </div>
             <div class="figure-frame method-frame">
-              <div class="figure-toolbar"><span class="figure-number">FIGURE 02</span><span class="figure-title">METHOD OVERVIEW</span><a href="assets/method.webp" target="_blank" rel="noopener">Open image ↗</a></div>
-              <img src="assets/method.webp" alt="Method overview: description prediction trains camera and depth Geometric Readers through a frozen VLM; a read pass controls the injector before the answer pass." width="1500" height="675" loading="lazy" decoding="async" />
-              <p class="figure-note">Geometry descriptions are training targets in Stage 1. At inference, the model answers from continuous geometric tokens.</p>
+
+              <a class="figure-image-link" href="assets/method.webp" target="_blank" rel="noopener" aria-label="Open figure at full size"><img src="assets/method.webp" alt="Method overview: description prediction trains camera and depth Geometric Readers through a frozen VLM; a read pass controls the injector before the answer pass." width="1500" height="675" loading="lazy" decoding="async" /></a>
+              <p class="figure-note"><strong>Figure 2.</strong> Geometry descriptions are training targets in Stage 1. At inference, the model answers from continuous geometric tokens.</p>
             </div>
           </section>
 
@@ -144,28 +144,18 @@
               <p class="lead">Stage 1 uses RGB view windows with camera poses, depth maps, and geometry descriptions. Stage 2 trains question answering on a separate collection of approximately 135K examples from multiple RGB sources.</p>
 
               <div class="figure-frame data-frame">
-                <div class="figure-toolbar"><span class="figure-number">SUPPLEMENTARY FIGURE</span><span class="figure-title">STAGE 1 · GEOMETRY-DESCRIPTION EXAMPLES</span><a href="assets/stage1-data.webp" target="_blank" rel="noopener">Open image ↗</a></div>
-                <a class="figure-image-link" href="assets/stage1-data.webp" target="_blank" rel="noopener" aria-label="Open Stage 1 training examples at full size"><img src="assets/stage1-data.webp" alt="Three ScanNet Stage 1 training examples. Each shows a reference RGB view, a second RGB view, relative camera poses, a depth map, and excerpts from camera and depth descriptions." width="1199" height="1215" loading="lazy" decoding="async" /></a>
-                <p class="figure-note">Three ScanNet training examples. Camera poses use the first view as their reference; depth colors are clipped at 5 m, and gray marks invalid depth.</p>
-              </div>
 
-              <div class="figure-frame data-frame">
-                <div class="figure-toolbar"><span class="figure-number">SUPPLEMENTARY FIGURE</span><span class="figure-title">STAGE 2 · QA DATA COLLECTION</span><a href="assets/stage2-data.webp" target="_blank" rel="noopener">Open image ↗</a></div>
                 <a class="figure-image-link" href="assets/stage2-data.webp" target="_blank" rel="noopener" aria-label="Open Stage 2 QA data figure at full size"><img src="assets/stage2-data.webp" alt="Stage 2 QA collection: representative RGB examples, the proportions of fourteen RGB sources in approximately 135K questions, and common spatial words in question stems." width="1488" height="1118" loading="lazy" decoding="async" /></a>
-                <p class="figure-note">The approximately 135K-example QA collection spans 14 RGB sources. The photos are examples; their displayed sizes do not show source frequency.</p>
+                <p class="figure-note"><strong>Figure 3.</strong> The approximately 135K-example QA collection spans 14 RGB sources. The photos are examples; their displayed sizes do not show source frequency.</p>
               </div>
           </section>
 
           <section id="results" class="section" aria-labelledby="results-title">
             <span class="section-label">04 — MAIN RESULTS</span>
-            <h2 id="results-title">What the numbers <em>show.</em></h2>
+            <h2 id="results-title">Main <em>results.</em></h2>
             <p class="lead">GeoReader is evaluated on seven spatial reasoning benchmarks with three VLM families, using geometry predicted from RGB by Depth Anything 3.</p>
-            <div class="metric-grid">
-                <div class="metric"><strong>94.3</strong><span>MindCube-Tiny accuracy (%)</span><small>Qwen3-VL-4B with geometry predicted from RGB by Depth Anything 3.</small></div>
-                <div class="metric"><strong>71.8</strong><span>Average over six spatial benchmarks (%)</span><small>Qwen3.5-9B on VSI-Bench, SPBench, CV-Bench, SPAR-Bench, ViewSpatial, and MMSI-Bench.</small></div>
-            </div>
 
-            <h3 class="sub-title">Table 1 · MindCube-Tiny</h3>
+            <h3 class="sub-title">MindCube-Tiny</h3>
             <div class="table-wrap">
 <table class="result-table paper-table">
 <thead><tr><th>Method</th><th>Rot.</th><th>Among</th><th>Around</th><th>Overall ↑</th></tr></thead>
@@ -207,9 +197,9 @@
 </tbody>
 </table>
             </div>
-            <p class="table-caption">MindCube-Tiny accuracy (%). Per API or backbone-size block, <span class="key key-best">bold</span> marks the best and <span class="key key-second">gray</span> the runner-up (only with ≥ 3 models; base rows unshaded). GeoReader scores highest in four of the five backbone blocks. Literature results are taken from the cited papers (paper Sec. A.3.4).</p>
+            <p class="table-caption"><strong>Table 1.</strong> MindCube-Tiny accuracy (%). Per API or backbone-size block, <span class="key key-best">bold</span> marks the best and <span class="key key-second">gray</span> the runner-up (only with ≥ 3 models; base rows unshaded). GeoReader scores highest in four of the five backbone blocks. Literature results are taken from the cited papers (paper Sec. A.3.4).</p>
 
-            <h3 class="sub-title">Table 2 · Six spatial benchmarks</h3>
+            <h3 class="sub-title">Six spatial benchmarks</h3>
             <div class="table-wrap">
 <table class="result-table paper-table">
 <thead><tr><th>Method</th><th>VSI</th><th>SPBench</th><th>CV</th><th>SPAR</th><th>ViewSpatial</th><th>MMSI</th><th>Avg. ↑</th></tr></thead>
@@ -249,30 +239,36 @@
 </tbody>
 </table>
             </div>
-            <p class="table-caption">Six-benchmark accuracy (%); Avg. is the mean. Per backbone-size block, <span class="key key-best">bold</span> marks the best and <span class="key key-second">gray</span> the runner-up (only with ≥ 3 models; base rows unshaded); <sup>†</sup> evaluated by us; <sup>*</sup> combined from two sources (paper Sec. A.3.4). GeoReader has the highest average in every block.</p>
+            <p class="table-caption"><strong>Table 2.</strong> Six-benchmark accuracy (%); Avg. is the mean. Per backbone-size block, <span class="key key-best">bold</span> marks the best and <span class="key key-second">gray</span> the runner-up (only with ≥ 3 models; base rows unshaded); <sup>†</sup> evaluated by us; <sup>*</sup> combined from two sources (paper Sec. A.3.4). GeoReader has the highest average in every block.</p>
           </section>
 
           <section id="use" class="section" aria-labelledby="use-title">
             <span class="section-label">05 — DOES IT USE GEOMETRY?</span>
             <h2 id="use-title">Answers that depend <em>on the geometry.</em></h2>
             <p class="lead">With the checkpoint, RGB, and questions fixed, removing GeoReader's geometry or mismatching it to the views lowers accuracy, while the feature-alignment model barely changes.</p>
-            <div class="metric-grid">
-                <div class="metric"><strong>89.2 → 77.2 → 63.1</strong><span>GeoReader: correct, zeroed, shuffled geometry</span><small>Accuracy drops when geometry content is removed or poses no longer match the views.</small></div>
-                <div class="metric"><strong>62.7 → 62.9 / 61.5</strong><span>Feature alignment: correct, zeroed, swapped latents</span><small>The released checkpoint's accuracy barely changes when its latents are removed or swapped.</small></div>
+            <div class="table-wrap narrow-table">
+              <table class="result-table paper-table">
+                <thead><tr><th>Geometry</th><th>GeoReader</th><th>Feat. align.</th></tr></thead>
+                <tbody>
+                  <tr><td>Shuffled</td><td>63.1</td><td>61.5</td></tr>
+                  <tr><td>Zero</td><td>77.2</td><td>62.9</td></tr>
+                  <tr><td>Correct</td><td class="best">89.2</td><td>62.7</td></tr>
+                </tbody>
+              </table>
             </div>
-              <p class="results-note">Intervention results use MindCube-Tiny and Qwen2.5-VL-3B; GeoReader uses annotation-derived camera geometry, and feature alignment is the released first-stage 3DThinker checkpoint.</p>
+            <p class="table-caption"><strong>Table 3.</strong> MindCube-Tiny accuracy (%) under geometry interventions with Qwen2.5-VL-3B. GeoReader uses annotation-derived camera geometry; feature alignment is the released first-stage 3DThinker checkpoint, whose latents are zeroed or swapped across questions. Only GeoReader drops markedly.</p>
 
             <h3 class="sub-title">Answer-token attention</h3>
             <p>The attention plots show where answer tokens look in questions that both models answer correctly. Geometry-content interventions test whether GeoReader's answers depend on its tokens.</p>
               <div class="figure-frame visual-figure">
-                <div class="figure-toolbar"><span class="figure-number">FIGURE 03</span><span class="figure-title">ANSWER-TOKEN ATTENTION</span><a href="assets/answer-attention.webp" target="_blank" rel="noopener">Open image ↗</a></div>
+
                 <a class="figure-image-link" href="assets/answer-attention.webp" target="_blank" rel="noopener" aria-label="Open answer-token attention figure at full size"><img src="assets/answer-attention.webp" alt="A four-view shoe question and layerwise attention-share curves for geometry, RGB, and question tokens, comparing GeoReader with feature alignment." width="1194" height="501" loading="lazy" decoding="async" /></a>
-                <p class="figure-note">On this MindCube-Tiny example, GeoReader's answer tokens attend more to geometric tokens than the feature-alignment model's answer tokens attend to its latents.</p>
+                <p class="figure-note"><strong>Figure 4.</strong> On this MindCube-Tiny example, GeoReader's answer tokens attend more to geometric tokens than the feature-alignment model's answer tokens attend to its latents.</p>
               </div>
               <div class="figure-frame visual-figure">
-                <div class="figure-toolbar"><span class="figure-number">SUPPLEMENTARY FIGURE 09</span><span class="figure-title">AMONG · AROUND · ROTATION</span><a href="assets/attention-cases.webp" target="_blank" rel="noopener">Open image ↗</a></div>
+
                 <a class="figure-image-link" href="assets/attention-cases.webp" target="_blank" rel="noopener" aria-label="Open three attention cases at full size"><img src="assets/attention-cases.webp" alt="Three MindCube-Tiny examples with input images, questions, both models' correct answers, and layerwise attention shares for geometry, RGB, and question tokens." width="1194" height="1803" loading="lazy" decoding="async" /></a>
-                <p class="figure-note">One example from each MindCube-Tiny category. Both models answer all three correctly; the curves compare direct answer-token attention in these cases.</p>
+                <p class="figure-note"><strong>Figure 5.</strong> One example from each MindCube-Tiny category. Both models answer all three correctly; the curves compare direct answer-token attention in these cases.</p>
               </div>
           </section>
 
@@ -325,28 +321,25 @@
             <h2 id="examples-title">Spatial answers with <em>predicted geometry.</em></h2>
             <p class="lead">Correct answers and failure cases with geometry predicted from RGB by Depth Anything 3.</p>
               <div class="figure-frame visual-figure">
-                <div class="figure-toolbar"><span class="figure-number">FIGURE 04</span><span class="figure-title">SPATIAL ANSWERS WITH PREDICTED GEOMETRY</span><a href="assets/spatial-visualization.webp" target="_blank" rel="noopener">Open image ↗</a></div>
+
                 <a class="figure-image-link" href="assets/spatial-visualization.webp" target="_blank" rel="noopener" aria-label="Open spatial-answer visualization at full size"><img src="assets/spatial-visualization.webp" alt="Two MMSI-Bench cross-view questions answered correctly by GeoReader, with RGB views, questions, answers, and predicted-depth point clouds highlighting queried objects." width="1194" height="654" loading="lazy" decoding="async" /></a>
-                <p class="figure-note">Two correct MMSI-Bench answers with DA3 geometry. The point clouds on the right come from predicted depth; circles identify the objects named in each question.</p>
+                <p class="figure-note"><strong>Figure 6.</strong> Two correct MMSI-Bench answers with DA3 geometry. The point clouds on the right come from predicted depth; circles identify the objects named in each question.</p>
               </div>
               <div class="supplementary-visuals" aria-labelledby="supplementary-visuals-title">
-                <h3 id="supplementary-visuals-title">More examples from the supplement.</h3>
-                <div class="approach-tabs visual-tabs" role="tablist" aria-label="Supplementary examples">
-                  <button type="button" role="tab" id="tab-correct-examples" aria-controls="panel-correct-examples" aria-selected="true" tabindex="0"><span>10</span> Correct examples</button>
-                  <button type="button" role="tab" id="tab-failure-cases" aria-controls="panel-failure-cases" aria-selected="false" tabindex="-1"><span>11</span> Failure cases</button>
-                </div>
-                <div class="visual-panel" role="tabpanel" id="panel-correct-examples" aria-labelledby="tab-correct-examples">
+                <h3 id="supplementary-visuals-title" class="sub-title">More correct answers</h3>
+                <div class="visual-panel">
                   <div class="figure-frame visual-figure">
-                    <div class="figure-toolbar"><span class="figure-number">SUPPLEMENTARY FIGURE 10</span><span class="figure-title">CORRECT RESPONSES</span><a href="assets/correct-examples.webp" target="_blank" rel="noopener">Open image ↗</a></div>
+
                     <a class="figure-image-link" href="assets/correct-examples.webp" target="_blank" rel="noopener" aria-label="Open correct-response examples at full size"><img src="assets/correct-examples.webp" alt="Three correct GeoReader responses with predicted geometry: viewpoint reasoning, relative depth, and view-specific reasoning." width="1194" height="1734" loading="lazy" decoding="async" /></a>
-                    <p class="figure-note">Selected correct responses with predicted pose or depth, including viewpoint, distance, and view-specific questions.</p>
+                    <p class="figure-note"><strong>Figure 7.</strong> Selected correct responses with predicted pose or depth, including viewpoint, distance, and view-specific questions.</p>
                   </div>
                 </div>
-                <div class="visual-panel" role="tabpanel" id="panel-failure-cases" aria-labelledby="tab-failure-cases" hidden>
+                <div class="visual-panel">
+                  <h3 class="sub-title">Failure cases</h3>
                   <div class="figure-frame visual-figure">
-                    <div class="figure-toolbar"><span class="figure-number">SUPPLEMENTARY FIGURE 11</span><span class="figure-title">FAILURE CASES</span><a href="assets/failure-cases.webp" target="_blank" rel="noopener">Open image ↗</a></div>
+
                     <a class="figure-image-link" href="assets/failure-cases.webp" target="_blank" rel="noopener" aria-label="Open failure-case examples at full size"><img src="assets/failure-cases.webp" alt="Three incorrect GeoReader responses shown alongside a camera-pose error, a reversed predicted depth order, and an answer matching a different reference view." width="1194" height="1734" loading="lazy" decoding="async" /></a>
-                    <p class="figure-note">Three failure cases show an incorrect predicted pose, reversed depth order, and an answer that matches another reference view.</p>
+                    <p class="figure-note"><strong>Figure 8.</strong> Three failure cases show an incorrect predicted pose, reversed depth order, and an answer that matches another reference view.</p>
                   </div>
                 </div>
               </div>
@@ -363,67 +356,65 @@
             <ul class="author-grid" aria-label="Authors">
               <li class="author-card">
                 <a class="author-photo-link" href="https://iris0329.github.io/" target="_blank" rel="noopener noreferrer" aria-label="Rong Li homepage"><img src="assets/authors/rong-li.webp" alt="Portrait of Rong Li" width="68" height="68" loading="lazy" decoding="async" /></a>
-                <div class="author-card-info"><div class="author-card-name"><a href="https://iris0329.github.io/" target="_blank" rel="noopener noreferrer">Rong Li</a><sup>1,7*</sup></div>
+                <div class="author-card-info"><div class="author-card-name"><a href="https://iris0329.github.io/" target="_blank" rel="noopener noreferrer">Rong Li</a></div>
                   <div class="author-links"><a href="https://iris0329.github.io/" target="_blank" rel="noopener noreferrer" aria-label="Rong Li Homepage" title="Homepage"><svg aria-hidden="true"><use href="#author-home-icon"></use></svg></a><a href="https://scholar.google.com/citations?user=M68wBgkAAAAJ" target="_blank" rel="noopener noreferrer" aria-label="Rong Li Google Scholar" title="Google Scholar"><svg aria-hidden="true"><use href="#author-scholar-icon"></use></svg></a><a href="https://github.com/iris0329" target="_blank" rel="noopener noreferrer" aria-label="Rong Li GitHub" title="GitHub"><svg aria-hidden="true"><use href="#author-github-icon"></use></svg></a></div>
                 </div>
               </li>
               <li class="author-card">
                 <a class="author-photo-link" href="https://sj-li.com/" target="_blank" rel="noopener noreferrer" aria-label="Shijie Li homepage"><img src="assets/authors/shijie-li.webp" alt="Portrait of Shijie Li" width="68" height="68" loading="lazy" decoding="async" /></a>
-                <div class="author-card-info"><div class="author-card-name"><a href="https://sj-li.com/" target="_blank" rel="noopener noreferrer">Shijie Li</a><sup>2*</sup></div>
+                <div class="author-card-info"><div class="author-card-name"><a href="https://sj-li.com/" target="_blank" rel="noopener noreferrer">Shijie Li</a></div>
                   <div class="author-links"><a href="https://sj-li.com/" target="_blank" rel="noopener noreferrer" aria-label="Shijie Li Homepage" title="Homepage"><svg aria-hidden="true"><use href="#author-home-icon"></use></svg></a><a href="https://scholar.google.com/citations?user=kl3niOYAAAAJ" target="_blank" rel="noopener noreferrer" aria-label="Shijie Li Google Scholar" title="Google Scholar"><svg aria-hidden="true"><use href="#author-scholar-icon"></use></svg></a><a href="https://github.com/sj-li" target="_blank" rel="noopener noreferrer" aria-label="Shijie Li GitHub" title="GitHub"><svg aria-hidden="true"><use href="#author-github-icon"></use></svg></a></div>
                 </div>
               </li>
               <li class="author-card">
                 <a class="author-photo-link" href="https://huangjy-pku.github.io/" target="_blank" rel="noopener noreferrer" aria-label="Jiangyong Huang homepage"><img src="assets/authors/jiangyong-huang.webp" alt="Portrait of Jiangyong Huang" width="68" height="68" loading="lazy" decoding="async" /></a>
-                <div class="author-card-info"><div class="author-card-name"><a href="https://huangjy-pku.github.io/" target="_blank" rel="noopener noreferrer">Jiangyong Huang</a><sup>3,7</sup></div>
+                <div class="author-card-info"><div class="author-card-name"><a href="https://huangjy-pku.github.io/" target="_blank" rel="noopener noreferrer">Jiangyong Huang</a></div>
                   <div class="author-links"><a href="https://huangjy-pku.github.io/" target="_blank" rel="noopener noreferrer" aria-label="Jiangyong Huang Homepage" title="Homepage"><svg aria-hidden="true"><use href="#author-home-icon"></use></svg></a><a href="https://scholar.google.com/citations?user=sBgDVNMAAAAJ" target="_blank" rel="noopener noreferrer" aria-label="Jiangyong Huang Google Scholar" title="Google Scholar"><svg aria-hidden="true"><use href="#author-scholar-icon"></use></svg></a><a href="https://github.com/huangjy-pku" target="_blank" rel="noopener noreferrer" aria-label="Jiangyong Huang GitHub" title="GitHub"><svg aria-hidden="true"><use href="#author-github-icon"></use></svg></a></div>
                 </div>
               </li>
               <li class="author-card">
                 <a class="author-photo-link" href="https://ldkong.com/" target="_blank" rel="noopener noreferrer" aria-label="Lingdong Kong homepage"><img src="assets/authors/lingdong-kong.webp" alt="Portrait of Lingdong Kong" width="68" height="68" loading="lazy" decoding="async" /></a>
-                <div class="author-card-info"><div class="author-card-name"><a href="https://ldkong.com/" target="_blank" rel="noopener noreferrer">Lingdong Kong</a><sup>4</sup></div>
+                <div class="author-card-info"><div class="author-card-name"><a href="https://ldkong.com/" target="_blank" rel="noopener noreferrer">Lingdong Kong</a></div>
                   <div class="author-links"><a href="https://ldkong.com/" target="_blank" rel="noopener noreferrer" aria-label="Lingdong Kong Homepage" title="Homepage"><svg aria-hidden="true"><use href="#author-home-icon"></use></svg></a><a href="https://scholar.google.com/citations?user=-j1j7TkAAAAJ" target="_blank" rel="noopener noreferrer" aria-label="Lingdong Kong Google Scholar" title="Google Scholar"><svg aria-hidden="true"><use href="#author-scholar-icon"></use></svg></a><a href="https://github.com/ldkong1205" target="_blank" rel="noopener noreferrer" aria-label="Lingdong Kong GitHub" title="GitHub"><svg aria-hidden="true"><use href="#author-github-icon"></use></svg></a></div>
                 </div>
               </li>
               <li class="author-card">
                 <a class="author-photo-link" href="https://jiaming-zhou.github.io/" target="_blank" rel="noopener noreferrer" aria-label="Jiaming Zhou homepage"><img src="assets/authors/jiaming-zhou.webp" alt="Portrait of Jiaming Zhou" width="68" height="68" loading="lazy" decoding="async" /></a>
-                <div class="author-card-info"><div class="author-card-name"><a href="https://jiaming-zhou.github.io/" target="_blank" rel="noopener noreferrer">Jiaming Zhou</a><sup>1</sup></div>
+                <div class="author-card-info"><div class="author-card-name"><a href="https://jiaming-zhou.github.io/" target="_blank" rel="noopener noreferrer">Jiaming Zhou</a></div>
                   <div class="author-links"><a href="https://jiaming-zhou.github.io/" target="_blank" rel="noopener noreferrer" aria-label="Jiaming Zhou Homepage" title="Homepage"><svg aria-hidden="true"><use href="#author-home-icon"></use></svg></a><a href="https://scholar.google.com/citations?user=b3y40w8AAAAJ" target="_blank" rel="noopener noreferrer" aria-label="Jiaming Zhou Google Scholar" title="Google Scholar"><svg aria-hidden="true"><use href="#author-scholar-icon"></use></svg></a><a href="https://github.com/jiaming-zhou" target="_blank" rel="noopener noreferrer" aria-label="Jiaming Zhou GitHub" title="GitHub"><svg aria-hidden="true"><use href="#author-github-icon"></use></svg></a></div>
                 </div>
               </li>
               <li class="author-card">
                 <a class="author-photo-link" href="https://dylanorange.github.io/" target="_blank" rel="noopener noreferrer" aria-label="Dongyue Lu homepage"><img src="assets/authors/dongyue-lu.webp" alt="Portrait of Dongyue Lu" width="68" height="68" loading="lazy" decoding="async" /></a>
-                <div class="author-card-info"><div class="author-card-name"><a href="https://dylanorange.github.io/" target="_blank" rel="noopener noreferrer">Dongyue Lu</a><sup>5</sup></div>
+                <div class="author-card-info"><div class="author-card-name"><a href="https://dylanorange.github.io/" target="_blank" rel="noopener noreferrer">Dongyue Lu</a></div>
                   <div class="author-links"><a href="https://dylanorange.github.io/" target="_blank" rel="noopener noreferrer" aria-label="Dongyue Lu Homepage" title="Homepage"><svg aria-hidden="true"><use href="#author-home-icon"></use></svg></a><a href="https://scholar.google.com/citations?user=bhEJsGoAAAAJ" target="_blank" rel="noopener noreferrer" aria-label="Dongyue Lu Google Scholar" title="Google Scholar"><svg aria-hidden="true"><use href="#author-scholar-icon"></use></svg></a><a href="https://github.com/DylanOrange" target="_blank" rel="noopener noreferrer" aria-label="Dongyue Lu GitHub" title="GitHub"><svg aria-hidden="true"><use href="#author-github-icon"></use></svg></a></div>
                 </div>
               </li>
               <li class="author-card">
                 <a class="author-photo-link" href="https://zeying-gong.github.io/" target="_blank" rel="noopener noreferrer" aria-label="Zeying Gong homepage"><img src="assets/authors/zeying-gong.webp" alt="Portrait of Zeying Gong" width="68" height="68" loading="lazy" decoding="async" /></a>
-                <div class="author-card-info"><div class="author-card-name"><a href="https://zeying-gong.github.io/" target="_blank" rel="noopener noreferrer">Zeying Gong</a><sup>1</sup></div>
+                <div class="author-card-info"><div class="author-card-name"><a href="https://zeying-gong.github.io/" target="_blank" rel="noopener noreferrer">Zeying Gong</a></div>
                   <div class="author-links"><a href="https://zeying-gong.github.io/" target="_blank" rel="noopener noreferrer" aria-label="Zeying Gong Homepage" title="Homepage"><svg aria-hidden="true"><use href="#author-home-icon"></use></svg></a><a href="https://scholar.google.com/citations?user=ze2Wh9EAAAAJ" target="_blank" rel="noopener noreferrer" aria-label="Zeying Gong Google Scholar" title="Google Scholar"><svg aria-hidden="true"><use href="#author-scholar-icon"></use></svg></a><a href="https://github.com/zeying-gong" target="_blank" rel="noopener noreferrer" aria-label="Zeying Gong GitHub" title="GitHub"><svg aria-hidden="true"><use href="#author-github-icon"></use></svg></a></div>
                 </div>
               </li>
               <li class="author-card">
                 <a class="author-photo-link" href="https://buzz-beater.github.io/" target="_blank" rel="noopener noreferrer" aria-label="Baoxiong Jia homepage"><img src="assets/authors/baoxiong-jia.webp" alt="Portrait of Baoxiong Jia" width="68" height="68" loading="lazy" decoding="async" /></a>
-                <div class="author-card-info"><div class="author-card-name"><a href="https://buzz-beater.github.io/" target="_blank" rel="noopener noreferrer">Baoxiong Jia</a><sup>7†✉</sup></div>
+                <div class="author-card-info"><div class="author-card-name"><a href="https://buzz-beater.github.io/" target="_blank" rel="noopener noreferrer">Baoxiong Jia</a></div>
                   <div class="author-links"><a href="https://buzz-beater.github.io/" target="_blank" rel="noopener noreferrer" aria-label="Baoxiong Jia Homepage" title="Homepage"><svg aria-hidden="true"><use href="#author-home-icon"></use></svg></a><a href="https://scholar.google.com/citations?user=qIBUK6sAAAAJ" target="_blank" rel="noopener noreferrer" aria-label="Baoxiong Jia Google Scholar" title="Google Scholar"><svg aria-hidden="true"><use href="#author-scholar-icon"></use></svg></a><a href="https://github.com/Buzz-Beater" target="_blank" rel="noopener noreferrer" aria-label="Baoxiong Jia GitHub" title="GitHub"><svg aria-hidden="true"><use href="#author-github-icon"></use></svg></a></div>
                 </div>
               </li>
               <li class="author-card">
                 <a class="author-photo-link" href="https://junweiliang.me/" target="_blank" rel="noopener noreferrer" aria-label="Junwei Liang homepage"><img src="assets/authors/junwei-liang.webp" alt="Portrait of Junwei Liang" width="68" height="68" loading="lazy" decoding="async" /></a>
-                <div class="author-card-info"><div class="author-card-name"><a href="https://junweiliang.me/" target="_blank" rel="noopener noreferrer">Junwei Liang</a><sup>1,6✉</sup></div>
+                <div class="author-card-info"><div class="author-card-name"><a href="https://junweiliang.me/" target="_blank" rel="noopener noreferrer">Junwei Liang</a></div>
                   <div class="author-links"><a href="https://junweiliang.me/" target="_blank" rel="noopener noreferrer" aria-label="Junwei Liang Homepage" title="Homepage"><svg aria-hidden="true"><use href="#author-home-icon"></use></svg></a><a href="https://scholar.google.com/citations?user=bMedjfUAAAAJ" target="_blank" rel="noopener noreferrer" aria-label="Junwei Liang Google Scholar" title="Google Scholar"><svg aria-hidden="true"><use href="#author-scholar-icon"></use></svg></a><a href="https://github.com/JunweiLiang" target="_blank" rel="noopener noreferrer" aria-label="Junwei Liang GitHub" title="GitHub"><svg aria-hidden="true"><use href="#author-github-icon"></use></svg></a></div>
                 </div>
               </li>
               <li class="author-card">
                 <a class="author-photo-link" href="https://siyuanhuang.com/" target="_blank" rel="noopener noreferrer" aria-label="Siyuan Huang homepage"><img src="assets/authors/siyuan-huang.webp" alt="Portrait of Siyuan Huang" width="68" height="68" loading="lazy" decoding="async" /></a>
-                <div class="author-card-info"><div class="author-card-name"><a href="https://siyuanhuang.com/" target="_blank" rel="noopener noreferrer">Siyuan Huang</a><sup>7✉</sup></div>
+                <div class="author-card-info"><div class="author-card-name"><a href="https://siyuanhuang.com/" target="_blank" rel="noopener noreferrer">Siyuan Huang</a></div>
                   <div class="author-links"><a href="https://siyuanhuang.com/" target="_blank" rel="noopener noreferrer" aria-label="Siyuan Huang Homepage" title="Homepage"><svg aria-hidden="true"><use href="#author-home-icon"></use></svg></a><a href="https://scholar.google.com/citations?user=1NN7Ee8AAAAJ" target="_blank" rel="noopener noreferrer" aria-label="Siyuan Huang Google Scholar" title="Google Scholar"><svg aria-hidden="true"><use href="#author-scholar-icon"></use></svg></a><a href="https://github.com/thusiyuan" target="_blank" rel="noopener noreferrer" aria-label="Siyuan Huang GitHub" title="GitHub"><svg aria-hidden="true"><use href="#author-github-icon"></use></svg></a></div>
                 </div>
               </li>
             </ul>
-            <p class="affiliations"><span><sup>1</sup>The Hong Kong University of Science and Technology (Guangzhou)</span> <span><sup>2</sup>Agency for Science, A*STAR</span> <span><sup>3</sup>Peking University</span> <span><sup>4</sup>Apple</span> <span><sup>5</sup>National University of Singapore</span> <span><sup>6</sup>The Hong Kong University of Science and Technology</span> <span><sup>7</sup>Beijing Institute for General Artificial Intelligence</span></p>
-            <p class="affiliations"><sup>*</sup>Equal contribution &nbsp;·&nbsp; <sup>✉</sup>Corresponding authors &nbsp;·&nbsp; <sup>†</sup>Project lead</p>
             <div class="citation-head"><span>CITE THIS WORK</span><button type="button" id="copy-citation" aria-label="Copy BibTeX citation">Copy BibTeX</button></div>
             <pre id="citation"><code>@misc{li2026georeader,
   title = {{GeoReader}: Learning Latent Geometry for Spatial Reasoning in Vision-Language Models},

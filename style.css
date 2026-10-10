@@ -69,3 +69,22 @@ h1,h2{font-weight:700;letter-spacing:-.03em}.hero-paper-title{letter-spacing:0}.
 /* 三张消融表：前两张并排，第三张（4 列）独占一行，避免 Tokens / Time 列被挤出可视区。 */
 .ablation-tables{grid-template-columns:repeat(2,minmax(0,1fr))}.ablation-tables>.table-wrap:last-child{grid-column:1/-1}
 @media(max-width:900px){.ablation-tables{grid-template-columns:1fr}}
+/* 图片按 3EED 主页的做法：去掉标题栏，图片通栏、细边框，图下 "Figure N." 粗体开头的说明；悬停轻微放大，点击看原图。 */
+.figure-frame,.visual-figure{border:1px solid #dfe8df;border-radius:12px;background:#fffefa;box-shadow:none;overflow:hidden;margin-top:28px}
+.figure-frame .figure-image-link{display:block;overflow:hidden}.figure-frame .figure-image-link img{transition:transform .25s ease}.figure-frame .figure-image-link:hover img{transform:scale(1.015)}
+.figure-frame p.figure-note,.visual-figure p.figure-note{border-top:1px solid #e7eee6;padding:14px 18px 16px;color:#5f7166;font-size:14.5px;line-height:1.6}.figure-note strong,.table-caption strong{color:var(--ink);font-weight:800}
+.visual-panel{margin-top:6px}.narrow-table{max-width:520px}
+/* 手机端：表格不横向滚动，整表收进屏幕宽度——缩小字号与内边距、允许表头和方法名换行。 */
+@media(max-width:640px){
+  .table-wrap{overflow-x:visible}
+  .result-table,.paper-table{font-size:10.5px;table-layout:auto}
+  .result-table th,.result-table td,.paper-table th,.paper-table td{padding:5px 3px;white-space:normal;word-break:normal}
+  .result-table th:first-child,.result-table td:first-child{padding-left:7px}
+  .result-table th:last-child,.result-table td:last-child{padding-right:7px}
+  .result-table thead th{font-size:9px;letter-spacing:.02em}
+  .paper-table tr.block-head td{font-size:10px;padding:6px 7px}
+  .paper-table sup{font-size:.65em}
+  .section p.table-caption{font-size:12.5px}
+}
+/* 手机端：单位名和 BibTeX 允许换行，整页不出现横向滚动。 */
+@media(max-width:640px){.author-affils span{white-space:normal;display:inline}.author-names span{white-space:nowrap}pre{white-space:pre-wrap;word-break:break-word;overflow:visible}}
