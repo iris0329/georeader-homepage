@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#145e4c" />
+    <meta name="description" content="GeoReader learns geometric representations that a vision-language model can read and use for spatial reasoning." />
+    <title>GeoReader: Learning Latent Geometry for Spatial Reasoning in Vision-Language Models</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="main.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="GeoReader, back to top"><span>Geo</span><span>Reader</span><i aria-hidden="true"></i></a>
+      <nav class="topnav" aria-label="Main navigation">
+        <a href="#question">The question</a>
+        <a href="#idea">The idea</a>
+        <a href="#method">The method</a>
+        <a href="#authors">Authors</a>
+      </nav>
+      <span class="top-paper top-paper-unavailable" aria-label="Paper link coming soon">Paper soon</span>
+    </header>
+
+    <main id="top">
+      <section class="hero page-width" aria-labelledby="hero-title">
+        <div class="hero-kicker"><span class="kicker-line"></span> VISION · LANGUAGE · GEOMETRY</div>
+        <h1 id="hero-title">Geometry the <em>VLM can read.</em></h1>
+        <p class="hero-paper-title">GeoReader: Learning Latent Geometry for Spatial Reasoning in Vision-Language Models</p>
+        <p class="hero-summary">Geometry foundation models can recover 3D structure from images. <strong>GeoReader</strong> learns to express that structure as geometric tokens a vision-language model can interpret, then use to answer spatial questions.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#question">Explore the idea <span aria-hidden="true">↓</span></a>
+          <span class="button button-outline button-unavailable" aria-label="Paper link coming soon">Paper link soon</span>
+        </div>
+        <div class="hero-index" aria-hidden="true"><span>01 / 04</span><span>SCROLL TO EXPLORE</span></div>
+      </section>
+
+      <div class="story page-width">
+        <aside class="contents" aria-label="On this page">
+          <span class="contents-label">CONTENTS</span>
+          <a href="#question" class="active">01 &nbsp; The question</a>
+          <a href="#idea">02 &nbsp; The idea</a>
+          <a href="#method">03 &nbsp; The method</a>
+          <a href="#evidence">04 &nbsp; The evidence</a>
+          <a href="#authors">Authors &amp; citation</a>
+        </aside>
+
+        <div class="story-main">
+          <section id="question" class="section section-first" aria-labelledby="question-title">
+            <span class="section-label">01 — THE QUESTION</span>
+            <h2 id="question-title">When a model has geometry, <em>does it actually use it?</em></h2>
+            <p class="lead">Spatial questions about distance, viewpoint, and camera motion need more than a good image representation. They need geometry that participates in the answer.</p>
+            <p>Existing approaches either fuse estimated geometric features into the VLM during question answering, or use those features to supervise intermediate representations. Both can capture geometry. Yet capturing it does not by itself show that the answer depends on it.</p>
+
+            <div class="figure-frame teaser-frame">
+              <div class="figure-toolbar"><span class="figure-number">FIGURE 01</span><span class="figure-title">THE PROBLEM AND OUR CORE IDEA</span><a href="assets/teaser.png" target="_blank" rel="noopener">Open image ↗</a></div>
+              <img src="assets/teaser.png" alt="A spatial question about a living-room scene, followed by QA-only fusion, feature alignment, and GeoReader's two training stages." width="1620" height="843" />
+              <p class="figure-note">Three routes from RGB and estimated geometry to a spatial answer. GeoReader first makes geometric tokens readable to the VLM, then trains the VLM to use them.</p>
+            </div>
+          </section>
+
+          <section id="idea" class="section" aria-labelledby="idea-title">
+            <span class="section-label">02 — THE IDEA</span>
+            <h2 id="idea-title">Learn geometry for <em>the model that reads it.</em></h2>
+            <p class="lead">The receiving VLM helps define a useful geometric interface. A frozen VLM reads the Reader's tokens and predicts geometry descriptions; this language task trains the Reader to express spatial relationships the VLM can already decode.</p>
+
+            <div class="approach-tabs" role="tablist" aria-label="Compare geometric interfaces">
+              <button type="button" role="tab" id="tab-fusion" aria-controls="panel-fusion" aria-selected="false" tabindex="-1" data-tab="fusion"><span>A</span> QA-only fusion</button>
+              <button type="button" role="tab" id="tab-alignment" aria-controls="panel-alignment" aria-selected="false" tabindex="-1" data-tab="alignment"><span>B</span> Feature alignment</button>
+              <button type="button" role="tab" id="tab-reader" aria-controls="panel-reader" aria-selected="true" tabindex="0" data-tab="reader"><span>C</span> GeoReader</button>
+            </div>
+            <div class="approach-panel" role="tabpanel" id="panel-fusion" aria-labelledby="tab-fusion" hidden>
+              <span class="panel-eyebrow">QA-ONLY FUSION</span>
+              <h3>Give the VLM geometry features as additional input.</h3>
+              <p>Question-answer supervision trains the VLM to use fused image and geometry features. The geometric interface receives no separate language-level training objective.</p>
+              <div class="panel-flow" aria-label="RGB and geometry features are fused for VLM question answering"><span>RGB</span><b>+</b><span>Geometry features</span><i>→</i><strong>VLM → Answer</strong></div>
+            </div>
+            <div class="approach-panel" role="tabpanel" id="panel-alignment" aria-labelledby="tab-alignment" hidden>
+              <span class="panel-eyebrow">FEATURE ALIGNMENT</span>
+              <h3>Match an intermediate representation to geometry features.</h3>
+              <p>A feature loss encourages a VLM latent to capture geometry. Whether the answer later uses that latent is a separate question, which can be checked with interventions.</p>
+              <div class="panel-flow" aria-label="VLM latent is aligned with geometry features"><span>VLM latent</span><i>→</i><span>Projected features</span><b>≈</b><strong>Geometry features</strong></div>
+            </div>
+            <div class="approach-panel reader-panel" role="tabpanel" id="panel-reader" aria-labelledby="tab-reader">
+              <span class="panel-eyebrow">GEOREADER</span>
+              <h3>Train a readable interface, then preserve it for QA.</h3>
+              <p>Stage 1 trains Geometric Readers with description prediction through a frozen VLM. Stage 2 freezes those Readers and adapts the VLM and geometry injector for answers.</p>
+              <div class="panel-flow" aria-label="Geometry is read into geometric tokens, then used for question answering"><span>Geometry</span><i>→</i><span>Geometric Reader</span><i>→</i><strong>Geometric tokens → VLM</strong></div>
+            </div>
+          </section>
+
+          <section id="method" class="section" aria-labelledby="method-title">
+            <span class="section-label">03 — THE METHOD</span>
+            <h2 id="method-title">Two stages. <em>One readable interface.</em></h2>
+            <div class="stage-grid">
+              <article class="stage-card stage-one"><span class="stage-number">01</span><span class="stage-tag">LEARN TO EXPRESS</span><h3>Learn a readable interface</h3><p>Geometry foundation models estimate camera poses and depth maps from RGB. Geometric Readers turn these signals into tokens. Description prediction trains each Reader through a frozen VLM.</p><div class="stage-footer"><span class="dot dot-orange"></span> Reader trained <span class="stage-sep">/</span> VLM frozen</div></article>
+              <article class="stage-card stage-two"><span class="stage-number">02</span><span class="stage-tag">LEARN TO ANSWER</span><h3>Preserve the interface</h3><p>The Readers stay frozen. A read pass gathers the question context; the geometry injector uses it to modulate geometric tokens. The answer pass then uses those tokens for spatial QA.</p><div class="stage-footer"><span class="dot dot-green"></span> Reader frozen <span class="stage-sep">/</span> VLM adapted</div></article>
+            </div>
+            <div class="figure-frame method-frame">
+              <div class="figure-toolbar"><span class="figure-number">FIGURE 02</span><span class="figure-title">METHOD OVERVIEW</span><a href="assets/method.png" target="_blank" rel="noopener">Open image ↗</a></div>
+              <img src="assets/method.png" alt="Method overview: description prediction trains camera and depth Geometric Readers through a frozen VLM; a read pass controls the injector before the answer pass." width="1500" height="675" />
+              <p class="figure-note">Geometry descriptions are training targets in Stage 1. At inference, the model answers from continuous geometric tokens.</p>
+            </div>
+          </section>
+
+          <section id="evidence" class="section" aria-labelledby="evidence-title">
+            <span class="section-label">04 — THE EVIDENCE</span>
+            <h2 id="evidence-title">Test what geometry <em>changes.</em></h2>
+            <p class="lead">The paper tests the interface at three points: what the Reader learns, whether answers use its tokens, and how the full system performs on spatial QA.</p>
+            <div class="evidence-list">
+              <div><span>01 / READABILITY</span><p>Compare description-supervised Readers with training recipes that do not first establish a readable interface.</p></div>
+              <div><span>02 / USE</span><p>Remove or shuffle geometry content and examine how answers change under controlled settings.</p></div>
+              <div><span>03 / SPATIAL QA</span><p>Evaluate across seven spatial reasoning benchmarks and three VLM families, including matched RGB-only QA fine-tuning comparisons.</p></div>
+            </div>
+          </section>
+
+          <section id="authors" class="section authors-section" aria-labelledby="authors-title">
+            <span class="section-label">THE PEOPLE</span>
+            <h2 id="authors-title">Authors &amp; citation</h2>
+            <p class="author-list">Rong Li · Shijie Li · Jiangyong Huang · Lingdong Kong · Jiaming Zhou · Dongyue Lu · Zeying Gong · Baoxiong Jia · Junwei Liang · Siyuan Huang</p>
+            <p class="affiliations">HKUST (Guangzhou) · A*STAR · Peking University · Apple · NUS · HKUST · Beijing Institute for General Artificial Intelligence</p>
+            <div class="citation-head"><span>CITE THIS WORK</span><button type="button" id="copy-citation" aria-label="Copy BibTeX citation">Copy BibTeX</button></div>
+            <pre id="citation"><code>@misc{li2026georeader,
+  title = {GeoReader: Learning Latent Geometry for Spatial Reasoning in Vision-Language Models},
+  author = {Rong Li and Shijie Li and Jiangyong Huang and Lingdong Kong and Jiaming Zhou and Dongyue Lu and Zeying Gong and Baoxiong Jia and Junwei Liang and Siyuan Huang},
+  year = {2026}
+}</code></pre>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer"><div class="page-width"><a class="brand" href="#top"><span>Geo</span><span>Reader</span><i aria-hidden="true"></i></a><span>Geometry the VLM can read.</span><a href="#top">Back to top ↑</a></div></footer>
+  </body>
+</html>
