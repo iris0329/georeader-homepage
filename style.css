@@ -116,3 +116,5 @@ h1,h2{font-weight:700;letter-spacing:-.03em}.visualizations h3,.results h3{font-
 .wordmark{font-weight:800;white-space:nowrap}.wordmark-geo{color:var(--orange)}.wordmark-reader{color:var(--green)}
 /* Emphasize the abstract's observation, method handoff, headline results, and takeaway. */
 .abstract-emphasis{font-weight:800;color:var(--ink)}
+/* 作者反馈：图和表比正文宽很多。内容栏统一收到正文（Abstract）宽度 800px，图、表、展开块与分隔线都和文字左右对齐。 */
+.story-main{max-width:800px}
