@@ -134,6 +134,55 @@
               <div><span>02 / USE</span><p>Remove or shuffle geometry content and examine how answers change under controlled settings.</p></div>
               <div><span>03 / SPATIAL QA</span><p>Evaluate across seven spatial reasoning benchmarks and three VLM families, including matched RGB-only QA fine-tuning comparisons.</p></div>
             </div>
+
+            <div class="visualizations" aria-labelledby="visualizations-title">
+              <span class="section-label">VISUALIZATIONS</span>
+              <h3 id="visualizations-title">See the questions, geometry, and answers.</h3>
+              <p>The attention plot shows where answer tokens look in one question that both models answer correctly. Geometry-content interventions test whether GeoReader's answers depend on its tokens.</p>
+
+              <div class="figure-frame visual-figure">
+                <div class="figure-toolbar"><span class="figure-number">FIGURE 03</span><span class="figure-title">ANSWER-TOKEN ATTENTION</span><a href="assets/answer-attention.webp" target="_blank" rel="noopener">Open image ↗</a></div>
+                <a class="figure-image-link" href="assets/answer-attention.webp" target="_blank" rel="noopener" aria-label="Open answer-token attention figure at full size"><img src="assets/answer-attention.webp" alt="A four-view shoe question and layerwise attention-share curves for geometry, RGB, and question tokens, comparing GeoReader with feature alignment." width="1194" height="501" loading="lazy" decoding="async" /></a>
+                <p class="figure-note">On this MindCube-Tiny example, GeoReader's answer tokens attend more to geometric tokens than the feature-alignment model's answer tokens attend to its latents.</p>
+              </div>
+
+              <div class="figure-frame visual-figure">
+                <div class="figure-toolbar"><span class="figure-number">FIGURE 04</span><span class="figure-title">SPATIAL ANSWERS WITH PREDICTED GEOMETRY</span><a href="assets/spatial-visualization.webp" target="_blank" rel="noopener">Open image ↗</a></div>
+                <a class="figure-image-link" href="assets/spatial-visualization.webp" target="_blank" rel="noopener" aria-label="Open spatial-answer visualization at full size"><img src="assets/spatial-visualization.webp" alt="Two MMSI-Bench cross-view questions answered correctly by GeoReader, with RGB views, questions, answers, and predicted-depth point clouds highlighting queried objects." width="1194" height="654" loading="lazy" decoding="async" /></a>
+                <p class="figure-note">Two correct MMSI-Bench answers with DA3 geometry. The point clouds on the right come from predicted depth; circles identify the objects named in each question.</p>
+              </div>
+
+              <div class="supplementary-visuals" aria-labelledby="supplementary-visuals-title">
+                <h3 id="supplementary-visuals-title">More visualizations from the supplement.</h3>
+                <p>Three attention cases, followed by correct responses and failure cases with predicted geometry.</p>
+                <div class="approach-tabs visual-tabs" role="tablist" aria-label="Supplementary visualizations">
+                  <button type="button" role="tab" id="tab-attention-cases" aria-controls="panel-attention-cases" aria-selected="true" tabindex="0"><span>09</span> Attention cases</button>
+                  <button type="button" role="tab" id="tab-correct-examples" aria-controls="panel-correct-examples" aria-selected="false" tabindex="-1"><span>10</span> Correct examples</button>
+                  <button type="button" role="tab" id="tab-failure-cases" aria-controls="panel-failure-cases" aria-selected="false" tabindex="-1"><span>11</span> Failure cases</button>
+                </div>
+                <div class="visual-panel" role="tabpanel" id="panel-attention-cases" aria-labelledby="tab-attention-cases">
+                  <div class="figure-frame visual-figure">
+                    <div class="figure-toolbar"><span class="figure-number">SUPPLEMENTARY FIGURE 09</span><span class="figure-title">AMONG · AROUND · ROTATION</span><a href="assets/attention-cases.webp" target="_blank" rel="noopener">Open image ↗</a></div>
+                    <a class="figure-image-link" href="assets/attention-cases.webp" target="_blank" rel="noopener" aria-label="Open three attention cases at full size"><img src="assets/attention-cases.webp" alt="Three MindCube-Tiny examples with input images, questions, both models' correct answers, and layerwise attention shares for geometry, RGB, and question tokens." width="1194" height="1803" loading="lazy" decoding="async" /></a>
+                    <p class="figure-note">One example from each MindCube-Tiny category. Both models answer all three correctly; the curves compare direct answer-token attention in these cases.</p>
+                  </div>
+                </div>
+                <div class="visual-panel" role="tabpanel" id="panel-correct-examples" aria-labelledby="tab-correct-examples" hidden>
+                  <div class="figure-frame visual-figure">
+                    <div class="figure-toolbar"><span class="figure-number">SUPPLEMENTARY FIGURE 10</span><span class="figure-title">CORRECT RESPONSES</span><a href="assets/correct-examples.webp" target="_blank" rel="noopener">Open image ↗</a></div>
+                    <a class="figure-image-link" href="assets/correct-examples.webp" target="_blank" rel="noopener" aria-label="Open correct-response examples at full size"><img src="assets/correct-examples.webp" alt="Three correct GeoReader responses with predicted geometry: viewpoint reasoning, relative depth, and view-specific reasoning." width="1194" height="1734" loading="lazy" decoding="async" /></a>
+                    <p class="figure-note">Selected correct responses with predicted pose or depth, including viewpoint, distance, and view-specific questions.</p>
+                  </div>
+                </div>
+                <div class="visual-panel" role="tabpanel" id="panel-failure-cases" aria-labelledby="tab-failure-cases" hidden>
+                  <div class="figure-frame visual-figure">
+                    <div class="figure-toolbar"><span class="figure-number">SUPPLEMENTARY FIGURE 11</span><span class="figure-title">FAILURE CASES</span><a href="assets/failure-cases.webp" target="_blank" rel="noopener">Open image ↗</a></div>
+                    <a class="figure-image-link" href="assets/failure-cases.webp" target="_blank" rel="noopener" aria-label="Open failure-case examples at full size"><img src="assets/failure-cases.webp" alt="Three incorrect GeoReader responses shown alongside a camera-pose error, a reversed predicted depth order, and an answer matching a different reference view." width="1194" height="1734" loading="lazy" decoding="async" /></a>
+                    <p class="figure-note">Three failure cases show an incorrect predicted pose, reversed depth order, and an answer that matches another reference view.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </section>
 
           <section id="authors" class="section authors-section" aria-labelledby="authors-title">
