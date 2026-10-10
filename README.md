@@ -10,6 +10,8 @@ Then visit `http://localhost:8765/`. Pushes to `main` publish the static files t
 
 Fonts: `assets/fonts/` holds Latin subsets of Lato Regular/Bold (OFL, same font as the paper figures).
 
+The GeoReader wordmark follows the paper's `paper_commands.tex`: bold Geo in `#F34C08` and Reader in `#008D70`. The plain-text page title, metadata, alt text, and BibTeX keep the unstyled spelling.
+
 `assets/teaser.webp` and `assets/method.webp` are renderings of the paper's Figure 1 and Figure 2. `assets/stage2-data.webp` comes from the paper's Stage 2 training-data figure (converted to WebP, quality 90). `assets/logos/` holds the affiliation emblems shown under the author list, the same set as the arXiv paper's first page (sources in the paper repository's `figures/affiliation_logos/README.md`). Re-render these assets when the corresponding paper figures change.
 
 `assets/model-logos/` holds the five SVG vendor marks used by the API rows in Table 1. They match the paper's `figures/model_logos/` assets; provenance and the note that these are community renditions are in that folder's README.

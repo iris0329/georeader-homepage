@@ -41,7 +41,7 @@
       <section class="hero page-width" aria-labelledby="hero-title">
         <div class="hero-kicker"><span class="kicker-line"></span> VISION · LANGUAGE · GEOMETRY</div>
         <h1 id="hero-title"><span class="hero-name"><span>Geo</span><span>Reader</span></span><span class="hero-tagline">Geometry the <em>VLM can read.</em></span></h1>
-        <p class="hero-paper-title">GeoReader: Learning Latent Geometry for Spatial Reasoning in Vision-Language Models</p>
+        <p class="hero-paper-title"><span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span>: Learning Latent Geometry for Spatial Reasoning in Vision-Language Models</p>
         <div class="hero-authors">
           <p class="author-names"><span><a href="https://iris0329.github.io/" target="_blank" rel="noopener noreferrer">Rong Li</a><sup>1,7*</sup></span> <span><a href="https://sj-li.com/" target="_blank" rel="noopener noreferrer">Shijie Li</a><sup>2*</sup></span> <span><a href="https://huangjy-pku.github.io/" target="_blank" rel="noopener noreferrer">Jiangyong Huang</a><sup>3,7</sup></span> <span><a href="https://ldkong.com/" target="_blank" rel="noopener noreferrer">Lingdong Kong</a><sup>4</sup></span> <span><a href="https://jiaming-zhou.github.io/" target="_blank" rel="noopener noreferrer">Jiaming Zhou</a><sup>1</sup></span> <span><a href="https://dylanorange.github.io/" target="_blank" rel="noopener noreferrer">Dongyue Lu</a><sup>5</sup></span> <span><a href="https://zeying-gong.github.io/" target="_blank" rel="noopener noreferrer">Zeying Gong</a><sup>1</sup></span> <span><a href="https://buzz-beater.github.io/" target="_blank" rel="noopener noreferrer">Baoxiong Jia</a><sup>7†✉</sup></span> <span><a href="https://junweiliang.me/" target="_blank" rel="noopener noreferrer">Junwei Liang</a><sup>1,6✉</sup></span> <span><a href="https://siyuanhuang.com/" target="_blank" rel="noopener noreferrer">Siyuan Huang</a><sup>7✉</sup></span></p>
           <p class="author-affils"><span><sup>1</sup>The Hong Kong University of Science and Technology (Guangzhou)</span> <span><sup>2</sup>Agency for Science, A*STAR</span> <span><sup>3</sup>Peking University</span> <span><sup>4</sup>Apple</span> <span><sup>5</sup>National University of Singapore</span> <span><sup>6</sup>The Hong Kong University of Science and Technology</span> <span><sup>7</sup>Beijing Institute for General Artificial Intelligence</span></p>
@@ -55,7 +55,7 @@
             <img src="assets/logos/bigai.png" alt="Beijing Institute for General Artificial Intelligence" height="40" />
           </div>
         </div>
-        <p class="hero-summary">Geometry foundation models can recover 3D structure from images. <strong>GeoReader</strong> learns to express that structure as geometric tokens a vision-language model can interpret, then use to answer spatial questions.</p>
+        <p class="hero-summary">Geometry foundation models can recover 3D structure from images. <strong><span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span></strong> learns to express that structure as geometric tokens a vision-language model can interpret, then use to answer spatial questions.</p>
         <div class="hero-actions">
           <a class="button button-primary" href="#abstract">Explore the idea <span aria-hidden="true">↓</span></a>
           <a class="button button-outline resource-button" href="https://github.com/iris0329/GeoReader" target="_blank" rel="noopener noreferrer"><span class="resource-icon resource-icon-code" aria-hidden="true">&lt;/&gt;</span> Code <span aria-hidden="true">↗</span></a>
@@ -81,7 +81,7 @@
         <div class="story-main">
           <section id="abstract" class="section section-first" aria-labelledby="abstract-title">
             <span class="section-label" id="abstract-title">ABSTRACT</span>
-            <p>Vision-language models (VLMs) struggle with metric and multi-view relationships that remain implicit in RGB observations. Geometry foundation models recover this structure from RGB, but existing methods either fuse the estimated features with visual tokens and learn to use them from question answering alone, or align VLM latents with geometry features. Capturing geometry, however, does not ensure its use: zeroing the aligned latents of a released feature-alignment model leaves its accuracy unchanged. We introduce <strong>GeoReader</strong>, a framework that learns geometric representations for the VLM that reads them. First, we train lightweight Geometric Readers to produce continuous input tokens, supervising them with geometry descriptions decoded by a frozen VLM, so that the Readers express geometry in a form the target model can already read. We then freeze the Readers to preserve this interface while fine-tuning the VLM on spatial QA, with geometry injection conditioned on the question. Geometry descriptions serve only as training targets: at inference, the VLM answers directly from the continuous geometric tokens without generating a geometry chain of thought. With geometry predicted from RGB images, GeoReader reaches 94.3 on MindCube-Tiny with Qwen3-VL-4B and, with a multi-source QA mixture, an average of 71.8 across six additional spatial benchmarks with Qwen3.5-9B. These results suggest that the most useful geometric representation is the one the receiving model can use, not necessarily the one that reconstructs geometry most accurately.</p>
+            <p>Vision-language models (VLMs) struggle with metric and multi-view relationships that remain implicit in RGB observations. Geometry foundation models recover this structure from RGB, but existing methods either fuse the estimated features with visual tokens and learn to use them from question answering alone, or align VLM latents with geometry features. Capturing geometry, however, does not ensure its use: zeroing the aligned latents of a released feature-alignment model leaves its accuracy unchanged. We introduce <strong><span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span></strong>, a framework that learns geometric representations for the VLM that reads them. First, we train lightweight Geometric Readers to produce continuous input tokens, supervising them with geometry descriptions decoded by a frozen VLM, so that the Readers express geometry in a form the target model can already read. We then freeze the Readers to preserve this interface while fine-tuning the VLM on spatial QA, with geometry injection conditioned on the question. Geometry descriptions serve only as training targets: at inference, the VLM answers directly from the continuous geometric tokens without generating a geometry chain of thought. With geometry predicted from RGB images, <span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span> reaches 94.3 on MindCube-Tiny with Qwen3-VL-4B and, with a multi-source QA mixture, an average of 71.8 across six additional spatial benchmarks with Qwen3.5-9B. These results suggest that the most useful geometric representation is the one the receiving model can use, not necessarily the one that reconstructs geometry most accurately.</p>
           </section>
 
           <section id="question" class="section" aria-labelledby="question-title">
@@ -93,7 +93,7 @@
             <div class="figure-frame teaser-frame">
 
               <a class="figure-image-link" href="assets/teaser.webp" target="_blank" rel="noopener" aria-label="Open figure at full size"><img src="assets/teaser.webp" alt="A spatial question about a living-room scene, followed by QA-only fusion, feature alignment, and GeoReader's two training stages." width="1620" height="843" /></a>
-              <p class="figure-note"><strong>Figure 1.</strong> Three routes from RGB and estimated geometry to a spatial answer. GeoReader first makes geometric tokens readable to the VLM, then trains the VLM to use them.</p>
+              <p class="figure-note"><strong>Figure 1.</strong> Three routes from RGB and estimated geometry to a spatial answer. <span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span> first makes geometric tokens readable to the VLM, then trains the VLM to use them.</p>
             </div>
 
             <h3 class="sub-title">Three ways to connect geometry to a VLM</h3>
@@ -151,7 +151,7 @@
           <section id="results" class="section" aria-labelledby="results-title">
             <span class="section-label">04 — MAIN RESULTS</span>
             <h2 id="results-title">Main <em>results.</em></h2>
-            <p class="lead">GeoReader is evaluated on seven spatial reasoning benchmarks with three VLM families, using geometry predicted from RGB by Depth Anything 3.</p>
+            <p class="lead"><span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span> is evaluated on seven spatial reasoning benchmarks with three VLM families, using geometry predicted from RGB by Depth Anything 3.</p>
 
             <h3 class="sub-title">MindCube-Tiny</h3>
             <div class="table-wrap">
@@ -171,31 +171,31 @@
 <tr><td>SenseNova-SI</td><td>–</td><td>–</td><td>–</td><td>52.6</td></tr>
 <tr><td>DR-MV3D</td><td class="second">43.0</td><td>71.3</td><td>73.6</td><td>66.5</td></tr>
 <tr><td>3DThinker</td><td class="best">55.5</td><td class="second">81.8</td><td class="second">75.2</td><td class="second">75.2</td></tr>
-<tr class="ours"><td><span class="ours-name">GeoReader</span></td><td>40.5</td><td class="best">90.3</td><td class="best">91.6</td><td class="best">81.1</td></tr>
+<tr class="ours"><td><span class="ours-name"><span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span></span></td><td>40.5</td><td class="best">90.3</td><td class="best">91.6</td><td class="best">81.1</td></tr>
 <tr class="block-head"><td colspan="5">Qwen2.5-VL · 7B</td></tr>
 <tr><td>Qwen2.5-VL</td><td>35.0</td><td>33.2</td><td>38.4</td><td>34.8</td></tr>
 <tr><td>SenseNova-SI</td><td>–</td><td>–</td><td>–</td><td>54.7</td></tr>
 <tr><td>3DThinker</td><td class="second">55.0</td><td class="second">83.0</td><td class="second">76.0</td><td class="second">76.0</td></tr>
-<tr class="ours"><td><span class="ours-name">GeoReader</span></td><td class="best">90.0</td><td class="best">94.7</td><td class="best">92.4</td><td class="best">93.2</td></tr>
+<tr class="ours"><td><span class="ours-name"><span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span></span></td><td class="best">90.0</td><td class="best">94.7</td><td class="best">92.4</td><td class="best">93.2</td></tr>
 <tr class="block-head"><td colspan="5">Qwen3-VL · 2B</td></tr>
 <tr><td>Qwen3-VL</td><td>29.5</td><td>33.3</td><td>47.2</td><td>35.9</td></tr>
 <tr><td>Spatial-TTT</td><td class="second">55.5</td><td>74.0</td><td class="second">89.8</td><td class="second">76.2</td></tr>
 <tr><td>3DThinker</td><td>53.0</td><td class="second">83.2</td><td>78.4</td><td class="second">76.2</td></tr>
-<tr class="ours"><td><span class="ours-name">GeoReader</span></td><td class="best">59.5</td><td class="best">93.3</td><td class="best">91.6</td><td class="best">86.5</td></tr>
+<tr class="ours"><td><span class="ours-name"><span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span></span></td><td class="best">59.5</td><td class="best">93.3</td><td class="best">91.6</td><td class="best">86.5</td></tr>
 <tr class="block-head"><td colspan="5">Qwen3-VL · 4B</td></tr>
 <tr><td>Qwen3-VL</td><td>25.0</td><td>25.3</td><td>43.6</td><td>29.6</td></tr>
 <tr><td>3DThinker</td><td class="second">55.0</td><td class="second">81.7</td><td class="second">78.4</td><td class="second">75.8</td></tr>
-<tr class="ours"><td><span class="ours-name">GeoReader</span></td><td class="best">94.5</td><td class="best">96.2</td><td class="best">89.6</td><td class="best">94.3</td></tr>
+<tr class="ours"><td><span class="ours-name"><span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span></span></td><td class="best">94.5</td><td class="best">96.2</td><td class="best">89.6</td><td class="best">94.3</td></tr>
 <tr class="block-head"><td colspan="5">Qwen3-VL · 8B</td></tr>
 <tr><td>Qwen3-VL</td><td>42.0</td><td>32.3</td><td>51.2</td><td>38.7</td></tr>
 <tr><td>SenseNova-SI</td><td class="second">79.5</td><td>73.2</td><td>70.4</td><td>73.8</td></tr>
 <tr><td>3DThinker</td><td>56.5</td><td class="second">82.5</td><td class="second">78.8</td><td>76.7</td></tr>
 <tr><td>GAMSI</td><td>–</td><td>–</td><td>–</td><td class="best">94.1</td></tr>
-<tr class="ours"><td><span class="ours-name">GeoReader</span></td><td class="best">91.5</td><td class="best">93.3</td><td class="best">95.2</td><td class="second">93.4</td></tr>
+<tr class="ours"><td><span class="ours-name"><span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span></span></td><td class="best">91.5</td><td class="best">93.3</td><td class="best">95.2</td><td class="second">93.4</td></tr>
 </tbody>
 </table>
             </div>
-            <p class="table-caption"><strong>Table 1.</strong> MindCube-Tiny accuracy (%). Per API or backbone-size block, <span class="key key-best">bold</span> marks the best and <span class="key key-second">gray</span> the runner-up (only with ≥ 3 models; base rows unshaded). GeoReader scores highest in four of the five backbone blocks. Literature results are taken from the cited papers (paper Sec. A.3.4).</p>
+            <p class="table-caption"><strong>Table 1.</strong> MindCube-Tiny accuracy (%). Per API or backbone-size block, <span class="key key-best">bold</span> marks the best and <span class="key key-second">gray</span> the runner-up (only with ≥ 3 models; base rows unshaded). <span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span> scores highest in four of the five backbone blocks. Literature results are taken from the cited papers (paper Sec. A.3.4).</p>
 
             <h3 class="sub-title">Six spatial benchmarks</h3>
             <div class="table-wrap">
@@ -208,7 +208,7 @@
 <tr><td>SpatialLadder-3B</td><td>45.7</td><td class="best">70.6</td><td>73.7</td><td>34.4</td><td>44.2</td><td>29.2</td><td>49.6</td></tr>
 <tr><td>3DThinker-3B</td><td class="best">59.1</td><td>60.2</td><td class="second">78.4</td><td class="second">58.2</td><td class="second">64.7</td><td class="best">41.9</td><td class="second">60.4</td></tr>
 <tr class="block-gap"><td colspan="8"></td></tr>
-<tr class="ours"><td><span class="ours-name">GeoReader</span>-3B</td><td class="second">56.1</td><td class="second">70.0</td><td class="best">83.7</td><td class="best">59.1</td><td class="best">71.4</td><td class="second">41.2</td><td class="best">63.6</td></tr>
+<tr class="ours"><td><span class="ours-name"><span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span></span>-3B</td><td class="second">56.1</td><td class="second">70.0</td><td class="best">83.7</td><td class="best">59.1</td><td class="best">71.4</td><td class="second">41.2</td><td class="best">63.6</td></tr>
 <tr class="block-gap"><td colspan="8"></td></tr>
 <tr><td>Qwen2.5-VL-7B<sup>†</sup></td><td>29.9</td><td>40.8</td><td>77.9</td><td>33.2</td><td>34.7</td><td>26.8</td><td>40.5</td></tr>
 <tr><td>SpaceR-7B</td><td>44.5</td><td>54.0</td><td>75.3</td><td>37.1</td><td>45.5</td><td>28.8</td><td>47.5</td></tr>
@@ -216,37 +216,37 @@
 <tr><td>Video-R1</td><td>33.4</td><td>42.8</td><td>69.6</td><td>31.5</td><td>36.1</td><td>29.4</td><td>40.5</td></tr>
 <tr><td>3DThinker-7B</td><td class="best">63.7</td><td class="second">68.3</td><td class="second">81.1</td><td class="best">63.3</td><td class="second">68.6</td><td class="second">43.3</td><td class="second">64.7</td></tr>
 <tr class="block-gap"><td colspan="8"></td></tr>
-<tr class="ours"><td><span class="ours-name">GeoReader</span>-7B</td><td class="second">58.0</td><td class="best">72.3</td><td class="best">84.4</td><td class="second">61.4</td><td class="best">75.6</td><td class="best">45.5</td><td class="best">66.2</td></tr>
+<tr class="ours"><td><span class="ours-name"><span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span></span>-7B</td><td class="second">58.0</td><td class="best">72.3</td><td class="best">84.4</td><td class="second">61.4</td><td class="best">75.6</td><td class="best">45.5</td><td class="best">66.2</td></tr>
 <tr class="block-head"><td colspan="8">Qwen3-VL family</td></tr>
 <tr><td>Qwen3-VL-4B<sup>†</sup></td><td>55.1</td><td>58.2</td><td>84.4</td><td>33.4</td><td>38.6</td><td>27.2</td><td>49.5</td></tr>
 <tr class="block-gap"><td colspan="8"></td></tr>
-<tr class="ours"><td><span class="ours-name">GeoReader</span>-4B</td><td class="best">64.8</td><td class="best">78.9</td><td class="best">85.6</td><td class="best">65.3</td><td class="best">77.4</td><td class="best">43.6</td><td class="best">69.3</td></tr>
+<tr class="ours"><td><span class="ours-name"><span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span></span>-4B</td><td class="best">64.8</td><td class="best">78.9</td><td class="best">85.6</td><td class="best">65.3</td><td class="best">77.4</td><td class="best">43.6</td><td class="best">69.3</td></tr>
 <tr class="block-gap"><td colspan="8"></td></tr>
 <tr><td>Qwen3-VL-8B<sup>†</sup></td><td>55.9</td><td>57.8</td><td>85.4</td><td>38.2</td><td>40.4</td><td>28.9</td><td>51.1</td></tr>
 <tr><td>SenseNova-SI-8B<sup>*</sup></td><td class="second">64.8</td><td class="second">65.8</td><td>83.4</td><td class="second">41.1</td><td class="second">51.2</td><td class="second">38.1</td><td class="second">57.4</td></tr>
 <tr class="block-gap"><td colspan="8"></td></tr>
-<tr class="ours"><td><span class="ours-name">GeoReader</span>-8B</td><td class="best">66.2</td><td class="best">76.7</td><td class="best">86.5</td><td class="best">65.7</td><td class="best">78.5</td><td class="best">46.6</td><td class="best">70.0</td></tr>
+<tr class="ours"><td><span class="ours-name"><span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span></span>-8B</td><td class="best">66.2</td><td class="best">76.7</td><td class="best">86.5</td><td class="best">65.7</td><td class="best">78.5</td><td class="best">46.6</td><td class="best">70.0</td></tr>
 <tr class="block-head"><td colspan="8"><em>Qwen3.5 family</em></td></tr>
 <tr><td>Qwen3.5-4B<sup>†</sup></td><td>50.0</td><td>35.5</td><td class="best">84.9</td><td>34.4</td><td>34.5</td><td>28.1</td><td>44.6</td></tr>
 <tr class="block-gap"><td colspan="8"></td></tr>
-<tr class="ours"><td><span class="ours-name">GeoReader</span>-4B</td><td class="best">66.7</td><td class="best">81.5</td><td>81.8</td><td class="best">68.7</td><td class="best">77.7</td><td class="best">45.4</td><td class="best">70.3</td></tr>
+<tr class="ours"><td><span class="ours-name"><span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span></span>-4B</td><td class="best">66.7</td><td class="best">81.5</td><td>81.8</td><td class="best">68.7</td><td class="best">77.7</td><td class="best">45.4</td><td class="best">70.3</td></tr>
 <tr class="block-gap"><td colspan="8"></td></tr>
 <tr><td>Qwen3.5-9B<sup>†</sup></td><td>54.1</td><td>50.7</td><td>85.9</td><td>42.1</td><td>38.2</td><td>32.0</td><td>50.5</td></tr>
 <tr class="block-gap"><td colspan="8"></td></tr>
-<tr class="ours"><td><span class="ours-name">GeoReader</span>-9B</td><td class="best">68.9</td><td class="best">80.4</td><td class="best">86.3</td><td class="best">70.4</td><td class="best">79.4</td><td class="best">45.4</td><td class="best">71.8</td></tr>
+<tr class="ours"><td><span class="ours-name"><span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span></span>-9B</td><td class="best">68.9</td><td class="best">80.4</td><td class="best">86.3</td><td class="best">70.4</td><td class="best">79.4</td><td class="best">45.4</td><td class="best">71.8</td></tr>
 </tbody>
 </table>
             </div>
-            <p class="table-caption"><strong>Table 2.</strong> Six-benchmark accuracy (%); Avg. is the mean. Per backbone-size block, <span class="key key-best">bold</span> marks the best and <span class="key key-second">gray</span> the runner-up (only with ≥ 3 models; base rows unshaded); <sup>†</sup> evaluated by us; <sup>*</sup> combined from two sources (paper Sec. A.3.4). GeoReader has the highest average in every block.</p>
+            <p class="table-caption"><strong>Table 2.</strong> Six-benchmark accuracy (%); Avg. is the mean. Per backbone-size block, <span class="key key-best">bold</span> marks the best and <span class="key key-second">gray</span> the runner-up (only with ≥ 3 models; base rows unshaded); <sup>†</sup> evaluated by us; <sup>*</sup> combined from two sources (paper Sec. A.3.4). <span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span> has the highest average in every block.</p>
           </section>
 
           <section id="use" class="section" aria-labelledby="use-title">
             <span class="section-label">05 — DOES IT USE GEOMETRY?</span>
             <h2 id="use-title">Answers that depend <em>on the geometry.</em></h2>
-            <p class="lead">With the checkpoint, RGB, and questions fixed, removing GeoReader's geometry or mismatching it to the views lowers accuracy, while the feature-alignment model barely changes.</p>
+            <p class="lead">With the checkpoint, RGB, and questions fixed, removing <span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span>'s geometry or mismatching it to the views lowers accuracy, while the feature-alignment model barely changes.</p>
             <div class="table-wrap narrow-table">
               <table class="result-table paper-table">
-                <thead><tr><th>Geometry</th><th>GeoReader</th><th>Feat. align.</th></tr></thead>
+                <thead><tr><th>Geometry</th><th><span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span></th><th>Feat. align.</th></tr></thead>
                 <tbody>
                   <tr><td>Shuffled</td><td>63.1</td><td>61.5</td></tr>
                   <tr><td>Zero</td><td>77.2</td><td>62.9</td></tr>
@@ -254,14 +254,14 @@
                 </tbody>
               </table>
             </div>
-            <p class="table-caption"><strong>Table 3.</strong> MindCube-Tiny accuracy (%) under geometry interventions with Qwen2.5-VL-3B. GeoReader uses annotation-derived camera geometry; feature alignment is the released first-stage 3DThinker checkpoint, whose latents are zeroed or swapped across questions. Only GeoReader drops markedly.</p>
+            <p class="table-caption"><strong>Table 3.</strong> MindCube-Tiny accuracy (%) under geometry interventions with Qwen2.5-VL-3B. <span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span> uses annotation-derived camera geometry; feature alignment is the released first-stage 3DThinker checkpoint, whose latents are zeroed or swapped across questions. Only <span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span> drops markedly.</p>
 
             <h3 class="sub-title">Answer-token attention</h3>
-            <p>The attention plots show where answer tokens look in questions that both models answer correctly. Geometry-content interventions test whether GeoReader's answers depend on its tokens.</p>
+            <p>The attention plots show where answer tokens look in questions that both models answer correctly. Geometry-content interventions test whether <span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span>'s answers depend on its tokens.</p>
               <div class="figure-frame visual-figure">
 
                 <a class="figure-image-link" href="assets/answer-attention.webp" target="_blank" rel="noopener" aria-label="Open answer-token attention figure at full size"><img src="assets/answer-attention.webp" alt="A four-view shoe question and layerwise attention-share curves for geometry, RGB, and question tokens, comparing GeoReader with feature alignment." width="1194" height="501" loading="lazy" decoding="async" /></a>
-                <p class="figure-note"><strong>Figure 4.</strong> On this MindCube-Tiny question, GeoReader's answer tokens attend more to geometric tokens than the feature-alignment model's answer tokens attend to its latents.</p>
+                <p class="figure-note"><strong>Figure 4.</strong> On this MindCube-Tiny question, <span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span>'s answer tokens attend more to geometric tokens than the feature-alignment model's answer tokens attend to its latents.</p>
               </div>
               <details class="figure-disclosure">
                 <summary>More attention curves · three question categories</summary>
@@ -276,7 +276,7 @@
           <section id="ablations" class="section" aria-labelledby="ablations-title">
             <span class="section-label">06 — WHAT MAKES IT WORK</span>
             <h2 id="ablations-title">Readable, frozen, <em>and injected for the question.</em></h2>
-            <p class="lead">Ablations on MindCube-Tiny with Qwen2.5-VL-3B compare Reader training, injection designs, and text geometry with GeoReader's continuous tokens.</p>
+            <p class="lead">Ablations on MindCube-Tiny with Qwen2.5-VL-3B compare Reader training, injection designs, and text geometry with <span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span>'s continuous tokens.</p>
             <div class="results-tables ablation-tables">
                 <div class="table-wrap">
                   <table class="result-table">
@@ -286,7 +286,7 @@
                       <tr><td>No Stage 1 (QA loss only)</td><td>54.7</td></tr>
                       <tr><td>Feature alignment (released)</td><td>62.7</td></tr>
                       <tr><td>Readability pretraining, Reader tuned in QA</td><td>76.4</td></tr>
-                      <tr class="ours"><td>GeoReader (Reader frozen)</td><td>89.2</td></tr>
+                      <tr class="ours"><td><span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span> (Reader frozen)</td><td>89.2</td></tr>
                     </tbody>
                   </table>
                 </div>
@@ -310,7 +310,7 @@
                       <tr><td>Joint description + QA SFT</td><td>67.0</td><td>16.3</td><td>0.5</td></tr>
                       <tr><td>Generated Text-CoT</td><td>72.9</td><td>119.3</td><td>2.5</td></tr>
                       <tr><td>Descriptions in prompt</td><td>81.0</td><td>16.3</td><td>0.5</td></tr>
-                      <tr class="ours"><td>GeoReader (pair)</td><td>89.2</td><td>16.2</td><td>0.5</td></tr>
+                      <tr class="ours"><td><span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span> (pair)</td><td>89.2</td><td>16.2</td><td>0.5</td></tr>
                     </tbody>
                   </table>
                 </div>
