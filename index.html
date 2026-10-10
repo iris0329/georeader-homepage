@@ -6,6 +6,15 @@
     <meta name="theme-color" content="#145e4c" />
     <meta name="description" content="GeoReader learns geometric representations that a vision-language model can read and use for spatial reasoning." />
     <title>GeoReader: Learning Latent Geometry for Spatial Reasoning in Vision-Language Models</title>
+    <link rel="canonical" href="https://iris0329.github.io/georeader-homepage/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://iris0329.github.io/georeader-homepage/" />
+    <meta property="og:title" content="GeoReader: Learning Latent Geometry for Spatial Reasoning in Vision-Language Models" />
+    <meta property="og:description" content="GeoReader learns geometric representations that a vision-language model can read and use for spatial reasoning." />
+    <meta property="og:image" content="https://iris0329.github.io/georeader-homepage/assets/teaser.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="GeoReader: Learning Latent Geometry for Spatial Reasoning in Vision-Language Models" />
+    <meta name="twitter:image" content="https://iris0329.github.io/georeader-homepage/assets/teaser.webp" />
     <link rel="icon" href="assets/favicon-r.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="style.css" />
     <script src="main.js" defer></script>
@@ -18,6 +27,7 @@
         <a href="#method">Method</a>
         <a href="#data">Training data</a>
         <a href="#evidence">Evidence</a>
+        <a href="#results">Results</a>
       </nav>
       <div class="top-resources">
         <a class="top-paper" href="https://github.com/iris0329/GeoReader" target="_blank" rel="noopener noreferrer" aria-label="GeoReader code on GitHub">Code ↗</a>
@@ -30,9 +40,22 @@
         <div class="hero-kicker"><span class="kicker-line"></span> VISION · LANGUAGE · GEOMETRY</div>
         <h1 id="hero-title">Geometry the <em>VLM can read.</em></h1>
         <p class="hero-paper-title">GeoReader: Learning Latent Geometry for Spatial Reasoning in Vision-Language Models</p>
+        <div class="hero-authors">
+          <p class="author-names"><span><a href="https://iris0329.github.io/" target="_blank" rel="noopener noreferrer">Rong Li</a><sup>1,7*</sup></span> <span><a href="https://sj-li.com/" target="_blank" rel="noopener noreferrer">Shijie Li</a><sup>2*</sup></span> <span><a href="https://huangjy-pku.github.io/" target="_blank" rel="noopener noreferrer">Jiangyong Huang</a><sup>3</sup></span> <span><a href="https://ldkong.com/" target="_blank" rel="noopener noreferrer">Lingdong Kong</a><sup>4</sup></span> <span><a href="https://jiaming-zhou.github.io/" target="_blank" rel="noopener noreferrer">Jiaming Zhou</a><sup>1</sup></span> <span><a href="https://dylanorange.github.io/" target="_blank" rel="noopener noreferrer">Dongyue Lu</a><sup>5</sup></span> <span><a href="https://zeying-gong.github.io/" target="_blank" rel="noopener noreferrer">Zeying Gong</a><sup>1</sup></span> <span><a href="https://buzz-beater.github.io/" target="_blank" rel="noopener noreferrer">Baoxiong Jia</a><sup>7†</sup></span> <span><a href="https://junweiliang.me/" target="_blank" rel="noopener noreferrer">Junwei Liang</a><sup>1,6✉</sup></span> <span><a href="https://siyuanhuang.com/" target="_blank" rel="noopener noreferrer">Siyuan Huang</a><sup>7✉</sup></span></p>
+          <p class="author-affils"><span><sup>1</sup>The Hong Kong University of Science and Technology (Guangzhou)</span> <span><sup>2</sup>Agency for Science, A*STAR</span> <span><sup>3</sup>Peking University</span> <span><sup>4</sup>Apple</span> <span><sup>5</sup>National University of Singapore</span> <span><sup>6</sup>The Hong Kong University of Science and Technology</span> <span><sup>7</sup>Beijing Institute for General Artificial Intelligence</span></p>
+          <p class="author-notes"><sup>*</sup>Equal contribution &nbsp;·&nbsp; <sup>✉</sup>Corresponding authors &nbsp;·&nbsp; <sup>†</sup>Project lead</p>
+          <div class="affil-logos" aria-label="Affiliations">
+            <img src="assets/logos/hkust.svg" alt="HKUST and HKUST (Guangzhou)" height="40" />
+            <img src="assets/logos/astar.png" alt="A*STAR" height="40" />
+            <img src="assets/logos/nus.svg" alt="National University of Singapore" height="40" />
+            <img src="assets/logos/apple.svg" alt="Apple" height="40" />
+            <img src="assets/logos/pku.svg" alt="Peking University" height="40" />
+            <img src="assets/logos/bigai.png" alt="Beijing Institute for General Artificial Intelligence" height="40" />
+          </div>
+        </div>
         <p class="hero-summary">Geometry foundation models can recover 3D structure from images. <strong>GeoReader</strong> learns to express that structure as geometric tokens a vision-language model can interpret, then use to answer spatial questions.</p>
         <div class="hero-actions">
-          <a class="button button-primary" href="#question">Explore the idea <span aria-hidden="true">↓</span></a>
+          <a class="button button-primary" href="#abstract">Explore the idea <span aria-hidden="true">↓</span></a>
           <a class="button button-outline resource-button" href="https://github.com/iris0329/GeoReader" target="_blank" rel="noopener noreferrer"><span class="resource-icon resource-icon-code" aria-hidden="true">&lt;/&gt;</span> Code <span aria-hidden="true">↗</span></a>
           <span class="button button-outline button-unavailable resource-button" aria-label="arXiv paper link coming soon"><span class="resource-icon resource-icon-arxiv" aria-hidden="true">a</span> arXiv soon</span>
         </div>
@@ -42,24 +65,31 @@
       <div class="story page-width">
         <aside class="contents" aria-label="On this page">
           <span class="contents-label">CONTENTS</span>
-          <a href="#question" class="active">01 &nbsp; The question</a>
+          <a href="#abstract" class="active">Abstract</a>
+          <a href="#question">01 &nbsp; The question</a>
           <a href="#idea">02 &nbsp; The idea</a>
           <a href="#method">03 &nbsp; The method</a>
           <a href="#data">04 &nbsp; Training data</a>
           <a href="#evidence">05 &nbsp; The evidence</a>
+          <a href="#results">Results</a>
           <a href="#authors">Authors &amp; citation</a>
         </aside>
 
         <div class="story-main">
-          <section id="question" class="section section-first" aria-labelledby="question-title">
+          <section id="abstract" class="section section-first" aria-labelledby="abstract-title">
+            <span class="section-label" id="abstract-title">ABSTRACT</span>
+            <p>Vision-language models (VLMs) struggle with metric and multi-view relationships that remain implicit in RGB observations. Geometry foundation models recover this structure from RGB, but existing methods either fuse the estimated features with visual tokens and learn to use them from question answering alone, or align VLM latents with geometry features. Capturing geometry, however, does not ensure its use: zeroing the aligned latents of a released feature-alignment model leaves its accuracy unchanged. We introduce <strong>GeoReader</strong>, a framework that learns geometric representations for the VLM that reads them. First, we train lightweight Geometric Readers to produce continuous input tokens, supervising them with geometry descriptions decoded by a frozen VLM, so that the Readers express geometry in a form the target model can already read. We then freeze the Readers to preserve this interface while fine-tuning the VLM on spatial QA, with geometry injection conditioned on the question. Geometry descriptions serve only as training targets: at inference, the VLM answers directly from the continuous geometric tokens without generating a geometry chain of thought. With geometry predicted from RGB images, GeoReader reaches 94.3 on MindCube-Tiny with Qwen3-VL-4B and, with a multi-source QA mixture, an average of 71.8 across six additional spatial benchmarks with Qwen3.5-9B. These results suggest that the most useful geometric representation is the one the receiving model can use, not necessarily the one that reconstructs geometry most accurately.</p>
+          </section>
+
+          <section id="question" class="section" aria-labelledby="question-title">
             <span class="section-label">01 — THE QUESTION</span>
             <h2 id="question-title">When a model has geometry, <em>does it actually use it?</em></h2>
             <p class="lead">Spatial questions about distance, viewpoint, and camera motion need more than a good image representation. They need geometry that participates in the answer.</p>
             <p>Existing approaches either fuse estimated geometric features into the VLM during question answering, or use those features to supervise intermediate representations. Both can capture geometry. Yet capturing it does not by itself show that the answer depends on it.</p>
 
             <div class="figure-frame teaser-frame">
-              <div class="figure-toolbar"><span class="figure-number">FIGURE 01</span><span class="figure-title">THE PROBLEM AND OUR CORE IDEA</span><a href="assets/teaser.png" target="_blank" rel="noopener">Open image ↗</a></div>
-              <img src="assets/teaser.png" alt="A spatial question about a living-room scene, followed by QA-only fusion, feature alignment, and GeoReader's two training stages." width="1620" height="843" />
+              <div class="figure-toolbar"><span class="figure-number">FIGURE 01</span><span class="figure-title">THE PROBLEM AND OUR CORE IDEA</span><a href="assets/teaser.webp" target="_blank" rel="noopener">Open image ↗</a></div>
+              <img src="assets/teaser.webp" alt="A spatial question about a living-room scene, followed by QA-only fusion, feature alignment, and GeoReader's two training stages." width="1620" height="843" />
               <p class="figure-note">Three routes from RGB and estimated geometry to a spatial answer. GeoReader first makes geometric tokens readable to the VLM, then trains the VLM to use them.</p>
             </div>
           </section>
@@ -102,8 +132,8 @@
               <article class="stage-card stage-two"><span class="stage-number">02</span><span class="stage-tag">LEARN TO ANSWER</span><h3>Preserve the interface</h3><p>The Readers stay frozen. A read pass gathers the question context; the geometry injector uses it to modulate geometric tokens. The answer pass then uses those tokens for spatial QA.</p><div class="stage-footer"><span class="dot dot-green"></span> Reader frozen <span class="stage-sep">/</span> VLM adapted</div></article>
             </div>
             <div class="figure-frame method-frame">
-              <div class="figure-toolbar"><span class="figure-number">FIGURE 02</span><span class="figure-title">METHOD OVERVIEW</span><a href="assets/method.png" target="_blank" rel="noopener">Open image ↗</a></div>
-              <img src="assets/method.png" alt="Method overview: description prediction trains camera and depth Geometric Readers through a frozen VLM; a read pass controls the injector before the answer pass." width="1500" height="675" />
+              <div class="figure-toolbar"><span class="figure-number">FIGURE 02</span><span class="figure-title">METHOD OVERVIEW</span><a href="assets/method.webp" target="_blank" rel="noopener">Open image ↗</a></div>
+              <img src="assets/method.webp" alt="Method overview: description prediction trains camera and depth Geometric Readers through a frozen VLM; a read pass controls the injector before the answer pass." width="1500" height="675" loading="lazy" decoding="async" />
               <p class="figure-note">Geometry descriptions are training targets in Stage 1. At inference, the model answers from continuous geometric tokens.</p>
             </div>
           </section>
@@ -114,14 +144,14 @@
               <p class="lead">Stage 1 uses RGB view windows with camera poses, depth maps, and geometry descriptions. Stage 2 trains question answering on a separate collection of approximately 135K examples from multiple RGB sources.</p>
 
               <div class="figure-frame data-frame">
-                <div class="figure-toolbar"><span class="figure-number">SUPPLEMENTARY FIGURE</span><span class="figure-title">STAGE 1 · GEOMETRY-DESCRIPTION EXAMPLES</span><a href="assets/stage1-data.png" target="_blank" rel="noopener">Open image ↗</a></div>
-                <a class="figure-image-link" href="assets/stage1-data.png" target="_blank" rel="noopener" aria-label="Open Stage 1 training examples at full size"><img src="assets/stage1-data.png" alt="Three ScanNet Stage 1 training examples. Each shows a reference RGB view, a second RGB view, relative camera poses, a depth map, and excerpts from camera and depth descriptions." width="1199" height="1215" loading="lazy" decoding="async" /></a>
+                <div class="figure-toolbar"><span class="figure-number">SUPPLEMENTARY FIGURE</span><span class="figure-title">STAGE 1 · GEOMETRY-DESCRIPTION EXAMPLES</span><a href="assets/stage1-data.webp" target="_blank" rel="noopener">Open image ↗</a></div>
+                <a class="figure-image-link" href="assets/stage1-data.webp" target="_blank" rel="noopener" aria-label="Open Stage 1 training examples at full size"><img src="assets/stage1-data.webp" alt="Three ScanNet Stage 1 training examples. Each shows a reference RGB view, a second RGB view, relative camera poses, a depth map, and excerpts from camera and depth descriptions." width="1199" height="1215" loading="lazy" decoding="async" /></a>
                 <p class="figure-note">Three ScanNet training examples. Camera poses use the first view as their reference; depth colors are clipped at 5 m, and gray marks invalid depth.</p>
               </div>
 
               <div class="figure-frame data-frame">
-                <div class="figure-toolbar"><span class="figure-number">SUPPLEMENTARY FIGURE</span><span class="figure-title">STAGE 2 · QA DATA COLLECTION</span><a href="assets/stage2-data.png" target="_blank" rel="noopener">Open image ↗</a></div>
-                <a class="figure-image-link" href="assets/stage2-data.png" target="_blank" rel="noopener" aria-label="Open Stage 2 QA data figure at full size"><img src="assets/stage2-data.png" alt="Stage 2 QA collection: representative RGB examples, the proportions of fourteen RGB sources in approximately 135K questions, and common spatial words in question stems." width="1488" height="1118" loading="lazy" decoding="async" /></a>
+                <div class="figure-toolbar"><span class="figure-number">SUPPLEMENTARY FIGURE</span><span class="figure-title">STAGE 2 · QA DATA COLLECTION</span><a href="assets/stage2-data.webp" target="_blank" rel="noopener">Open image ↗</a></div>
+                <a class="figure-image-link" href="assets/stage2-data.webp" target="_blank" rel="noopener" aria-label="Open Stage 2 QA data figure at full size"><img src="assets/stage2-data.webp" alt="Stage 2 QA collection: representative RGB examples, the proportions of fourteen RGB sources in approximately 135K questions, and common spatial words in question stems." width="1488" height="1118" loading="lazy" decoding="async" /></a>
                 <p class="figure-note">The approximately 135K-example QA collection spans 14 RGB sources. The photos are examples; their displayed sizes do not show source frequency.</p>
               </div>
           </section>
@@ -133,7 +163,63 @@
             <div class="evidence-list">
               <div><span>01 / READABILITY</span><p>Compare description-supervised Readers with training recipes that do not first establish a readable interface.</p></div>
               <div><span>02 / USE</span><p>Remove or shuffle geometry content and examine how answers change under controlled settings.</p></div>
-              <div><span>03 / SPATIAL QA</span><p>Evaluate across seven spatial reasoning benchmarks and three VLM families, including matched RGB-only QA fine-tuning comparisons.</p></div>
+              <div><span>03 / SPATIAL QA</span><p>Evaluate across seven spatial reasoning benchmarks and three VLM families, including comparisons with vanilla SFT, the same QA fine-tuning without geometry.</p></div>
+            </div>
+
+            <div id="results" class="results" aria-labelledby="results-title">
+              <span class="section-label">RESULTS</span>
+              <h3 id="results-title">What the numbers show.</h3>
+              <div class="metric-grid">
+                <div class="metric"><strong>94.3</strong><span>MindCube-Tiny accuracy (%)</span><small>Qwen3-VL-4B with geometry predicted from RGB by Depth Anything 3.</small></div>
+                <div class="metric"><strong>71.8</strong><span>Average over six spatial benchmarks (%)</span><small>Qwen3.5-9B on VSI-Bench, SPBench, CV-Bench, SPAR-Bench, ViewSpatial, and MMSI-Bench.</small></div>
+                <div class="metric"><strong>89.2 → 77.2 → 63.1</strong><span>GeoReader: correct, zeroed, shuffled geometry</span><small>Accuracy drops when geometry content is removed or poses no longer match the views.</small></div>
+                <div class="metric"><strong>62.7 → 62.9 / 61.5</strong><span>Feature alignment: correct, zeroed, swapped latents</span><small>The released checkpoint's accuracy barely changes when its latents are removed or swapped.</small></div>
+              </div>
+              <p class="results-note">Intervention results use MindCube-Tiny and Qwen2.5-VL-3B; GeoReader uses annotation-derived camera geometry, and feature alignment is the released first-stage 3DThinker checkpoint.</p>
+
+              <div class="table-wrap">
+                <table class="result-table">
+                  <caption>Accuracy (%) of each base model and GeoReader. MindCube-Tiny results use Depth Anything 3 geometry (paper Tables 1 and 13); six-benchmark averages come from Table 2. “–” marks settings not reported.</caption>
+                  <thead><tr><th>Backbone</th><th>MindCube-Tiny<br />base → GeoReader</th><th>Six-benchmark avg.<br />base → GeoReader</th></tr></thead>
+                  <tbody>
+                    <tr><td>Qwen2.5-VL-3B</td><td>38.3 → <b>81.1</b></td><td>37.8 → <b>63.6</b></td></tr>
+                    <tr><td>Qwen2.5-VL-7B</td><td>34.8 → <b>93.2</b></td><td>40.5 → <b>66.2</b></td></tr>
+                    <tr><td>Qwen3-VL-2B</td><td>35.9 → <b>86.5</b></td><td>–</td></tr>
+                    <tr><td>Qwen3-VL-4B</td><td>29.6 → <b>94.3</b></td><td>49.5 → <b>69.3</b></td></tr>
+                    <tr><td>Qwen3-VL-8B</td><td>38.7 → <b>93.4</b></td><td>51.1 → <b>70.0</b></td></tr>
+                    <tr><td>Qwen3.5-4B</td><td>47.8 → <b>82.2</b></td><td>44.6 → <b>70.3</b></td></tr>
+                    <tr><td>Qwen3.5-9B</td><td>–</td><td>50.5 → <b>71.8</b></td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="results-tables">
+                <div class="table-wrap">
+                  <table class="result-table">
+                    <caption>Reader training on MindCube-Tiny (Qwen2.5-VL-3B, annotated geometry).</caption>
+                    <thead><tr><th>Geometric interface</th><th>Acc.</th></tr></thead>
+                    <tbody>
+                      <tr><td>No Stage 1 (QA loss only)</td><td>54.7</td></tr>
+                      <tr><td>Feature alignment (released)</td><td>62.7</td></tr>
+                      <tr><td>Readability pretraining, Reader tuned in QA</td><td>76.4</td></tr>
+                      <tr class="ours"><td>GeoReader (Reader frozen)</td><td>89.2</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="table-wrap">
+                  <table class="result-table">
+                    <caption>Text versus continuous geometry on MindCube-Tiny: accuracy, generated tokens, and latency.</caption>
+                    <thead><tr><th>Recipe</th><th>Acc.</th><th>Tokens</th><th>Time (s)</th></tr></thead>
+                    <tbody>
+                      <tr><td>Vanilla SFT</td><td>68.6</td><td>16.2</td><td>0.5</td></tr>
+                      <tr><td>Joint description + QA SFT</td><td>67.0</td><td>16.3</td><td>0.5</td></tr>
+                      <tr><td>Generated Text-CoT</td><td>72.9</td><td>119.3</td><td>2.5</td></tr>
+                      <tr><td>Descriptions in prompt</td><td>81.0</td><td>16.3</td><td>0.5</td></tr>
+                      <tr class="ours"><td>GeoReader (pair)</td><td>89.2</td><td>16.2</td><td>0.5</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
 
             <div class="visualizations" aria-labelledby="visualizations-title">
@@ -189,11 +275,12 @@
           <section id="authors" class="section authors-section" aria-labelledby="authors-title">
             <span class="section-label">THE PEOPLE</span>
             <h2 id="authors-title">Authors &amp; citation</h2>
-            <p class="author-list"><a href="https://iris0329.github.io/" target="_blank" rel="noopener noreferrer">Rong Li</a> · <a href="https://sj-li.com/" target="_blank" rel="noopener noreferrer">Shijie Li</a> · <a href="https://huangjy-pku.github.io/" target="_blank" rel="noopener noreferrer">Jiangyong Huang</a> · <a href="https://ldkong.com/" target="_blank" rel="noopener noreferrer">Lingdong Kong</a> · <a href="https://jiaming-zhou.github.io/" target="_blank" rel="noopener noreferrer">Jiaming Zhou</a> · <a href="https://dylanorange.github.io/" target="_blank" rel="noopener noreferrer">Dongyue Lu</a> · <a href="https://zeying-gong.github.io/" target="_blank" rel="noopener noreferrer">Zeying Gong</a> · <a href="https://buzz-beater.github.io/" target="_blank" rel="noopener noreferrer">Baoxiong Jia</a> · <a href="https://junweiliang.me/" target="_blank" rel="noopener noreferrer">Junwei Liang</a> · <a href="https://siyuanhuang.com/" target="_blank" rel="noopener noreferrer">Siyuan Huang</a></p>
-            <p class="affiliations">HKUST (Guangzhou) · A*STAR · Peking University · Apple · NUS · HKUST · Beijing Institute for General Artificial Intelligence</p>
+            <p class="author-list"><a href="https://iris0329.github.io/" target="_blank" rel="noopener noreferrer">Rong Li</a><sup>1,7*</sup> · <a href="https://sj-li.com/" target="_blank" rel="noopener noreferrer">Shijie Li</a><sup>2*</sup> · <a href="https://huangjy-pku.github.io/" target="_blank" rel="noopener noreferrer">Jiangyong Huang</a><sup>3</sup> · <a href="https://ldkong.com/" target="_blank" rel="noopener noreferrer">Lingdong Kong</a><sup>4</sup> · <a href="https://jiaming-zhou.github.io/" target="_blank" rel="noopener noreferrer">Jiaming Zhou</a><sup>1</sup> · <a href="https://dylanorange.github.io/" target="_blank" rel="noopener noreferrer">Dongyue Lu</a><sup>5</sup> · <a href="https://zeying-gong.github.io/" target="_blank" rel="noopener noreferrer">Zeying Gong</a><sup>1</sup> · <a href="https://buzz-beater.github.io/" target="_blank" rel="noopener noreferrer">Baoxiong Jia</a><sup>7†</sup> · <a href="https://junweiliang.me/" target="_blank" rel="noopener noreferrer">Junwei Liang</a><sup>1,6✉</sup> · <a href="https://siyuanhuang.com/" target="_blank" rel="noopener noreferrer">Siyuan Huang</a><sup>7✉</sup></p>
+            <p class="affiliations"><span><sup>1</sup>The Hong Kong University of Science and Technology (Guangzhou)</span> <span><sup>2</sup>Agency for Science, A*STAR</span> <span><sup>3</sup>Peking University</span> <span><sup>4</sup>Apple</span> <span><sup>5</sup>National University of Singapore</span> <span><sup>6</sup>The Hong Kong University of Science and Technology</span> <span><sup>7</sup>Beijing Institute for General Artificial Intelligence</span></p>
+            <p class="affiliations"><sup>*</sup>Equal contribution &nbsp;·&nbsp; <sup>✉</sup>Corresponding authors &nbsp;·&nbsp; <sup>†</sup>Project lead</p>
             <div class="citation-head"><span>CITE THIS WORK</span><button type="button" id="copy-citation" aria-label="Copy BibTeX citation">Copy BibTeX</button></div>
             <pre id="citation"><code>@misc{li2026georeader,
-  title = {GeoReader: Learning Latent Geometry for Spatial Reasoning in Vision-Language Models},
+  title = {{GeoReader}: Learning Latent Geometry for Spatial Reasoning in Vision-Language Models},
   author = {Rong Li and Shijie Li and Jiangyong Huang and Lingdong Kong and Jiaming Zhou and Dongyue Lu and Zeying Gong and Baoxiong Jia and Junwei Liang and Siyuan Huang},
   year = {2026}
 }</code></pre>
