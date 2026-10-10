@@ -95,28 +95,6 @@
               <p class="figure-note"><strong>Figure 1.</strong> Three routes from RGB and estimated geometry to a spatial answer. <span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span> first makes geometric tokens readable to the VLM, then trains the VLM to use them.</p>
             </div>
 
-            <h3 class="sub-title">Three ways to connect geometry to a VLM</h3>
-            <p>All three routes start from RGB views. For spatial QA, the VLM also receives the question. The routes differ in how estimated geometry enters training and answer generation.</p>
-            <div class="approach-grid" aria-label="Three geometric interfaces">
-              <article class="approach-panel fusion-panel">
-                <span class="panel-eyebrow">A · QA-ONLY FUSION</span>
-                <h3>Fuse features for QA</h3>
-                <p>A geometry foundation model estimates features from RGB. They join the VLM's visual features; the RGB views and question remain inputs.</p>
-                <p class="approach-signal"><strong>Supervision</strong> Answer loss alone.</p>
-              </article>
-              <article class="approach-panel alignment-panel">
-                <span class="panel-eyebrow">B · FEATURE ALIGNMENT</span>
-                <h3>Align internal latents</h3>
-                <p>The VLM still answers from RGB views and the question. A feature loss aligns projected VLM latents with geometry features estimated from those views.</p>
-                <p class="approach-signal"><strong>Supervision</strong> Feature-alignment loss.</p>
-              </article>
-              <article class="approach-panel reader-panel">
-                <span class="panel-eyebrow">C · GEOREADER</span>
-                <h3>Learn readable tokens</h3>
-                <p>Readers turn estimated geometry into input tokens. A frozen VLM predicts descriptions to train them; then frozen Readers supply tokens while the VLM and geometry injector learn QA.</p>
-                <p class="approach-signal"><strong>Supervision</strong> Description loss, then answer loss.</p>
-              </article>
-            </div>
           </section>
 
           <section id="method" class="section" aria-labelledby="method-title">
