@@ -39,3 +39,19 @@ h1,h2{font-weight:700;letter-spacing:-.03em}.hero-paper-title{letter-spacing:0}.
 .author-links{display:flex;gap:7px;margin-top:9px}.author-links a{display:inline-grid;place-items:center;width:30px;height:30px;border:1px solid #d5e5d9;border-radius:8px;background:#f0f7f1;color:var(--forest);transition:background .15s,border-color .15s,color .15s}.author-links a:hover{background:#dcefe2;border-color:#9fc9ad;color:var(--green)}.author-links svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 @media(max-width:640px){.author-grid{grid-template-columns:1fr;gap:10px;margin-top:24px}.author-card{min-height:92px;padding:12px 14px}.author-card-name{font-size:15.5px}}
 .author-card-name sup{font-size:.64em;font-weight:700;color:var(--green);margin-left:1px}
+/* 字号重新平衡（作者反馈：小标签太小、章节大标题太大）：缩小 h2/h3，放大标签、说明文字和表格，
+   让 "05 — THE EVIDENCE" 这类标签与下面的标题差距缩到约 1:2.7，而不是原来的 1:4.7。 */
+.section h2{font-size:clamp(32px,3vw,44px);line-height:1.15;margin-bottom:20px}
+.section-label{font-size:15px;letter-spacing:.11em;margin-bottom:14px}
+.section p{font-size:17.5px}.section p.lead{font-size:20px;line-height:1.6}
+.visualizations h3,.results h3,.supplementary-visuals h3{font-size:clamp(25px,2.2vw,32px)}
+.hero-kicker{font-size:12.5px}.hero-paper-title{font-size:18px}.hero-index{font-size:11.5px}
+.contents{font-size:14.5px}.contents-label{font-size:12px}.topnav{font-size:14px}
+.figure-toolbar{font-size:12px}.figure-frame p.figure-note{font-size:14.5px}
+.approach-tabs button{font-size:14px}.panel-eyebrow,.stage-tag{font-size:12px}.approach-panel h3{font-size:25px}.approach-panel p{font-size:16px}.panel-flow{font-size:14px}
+.stage-card h3{font-size:26px}.stage-card p{font-size:15.5px}.stage-footer{font-size:13px}.stage-number{font-size:40px}
+.evidence-list span{font-size:12.5px}.evidence-list p{font-size:16.5px}
+.metric span{font-size:15px}.metric small{font-size:13.5px}.section p.results-note{font-size:14px}
+.result-table{font-size:15px}.result-table caption{font-size:13.5px}.result-table thead th{font-size:12px}
+.author-affils{font-size:15px}.author-notes{font-size:13.5px}.citation-head{font-size:12px}pre{font-size:13px}
+@media(max-width:640px){.section h2{font-size:clamp(27px,7.4vw,34px)}.section-label{font-size:13px}.section p{font-size:16px}.section p.lead{font-size:18px}.figure-toolbar{font-size:10.5px}.figure-frame p.figure-note{font-size:13.5px}.result-table{font-size:13.5px}pre{font-size:11px}}

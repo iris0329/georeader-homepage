@@ -28,6 +28,8 @@
         <a href="#data">Training data</a>
         <a href="#evidence">Evidence</a>
         <a href="#results">Results</a>
+        <a href="#attention">Attention</a>
+        <a href="#examples">Examples</a>
       </nav>
       <div class="top-resources">
         <a class="top-paper" href="https://github.com/iris0329/GeoReader" target="_blank" rel="noopener noreferrer" aria-label="GeoReader code on GitHub">Code ↗</a>
@@ -41,7 +43,7 @@
         <h1 id="hero-title">Geometry the <em>VLM can read.</em></h1>
         <p class="hero-paper-title">GeoReader: Learning Latent Geometry for Spatial Reasoning in Vision-Language Models</p>
         <div class="hero-authors">
-          <p class="author-names"><span><a href="https://iris0329.github.io/" target="_blank" rel="noopener noreferrer">Rong Li</a><sup>1,7*</sup></span> <span><a href="https://sj-li.com/" target="_blank" rel="noopener noreferrer">Shijie Li</a><sup>2*</sup></span> <span><a href="https://huangjy-pku.github.io/" target="_blank" rel="noopener noreferrer">Jiangyong Huang</a><sup>3</sup></span> <span><a href="https://ldkong.com/" target="_blank" rel="noopener noreferrer">Lingdong Kong</a><sup>4</sup></span> <span><a href="https://jiaming-zhou.github.io/" target="_blank" rel="noopener noreferrer">Jiaming Zhou</a><sup>1</sup></span> <span><a href="https://dylanorange.github.io/" target="_blank" rel="noopener noreferrer">Dongyue Lu</a><sup>5</sup></span> <span><a href="https://zeying-gong.github.io/" target="_blank" rel="noopener noreferrer">Zeying Gong</a><sup>1</sup></span> <span><a href="https://buzz-beater.github.io/" target="_blank" rel="noopener noreferrer">Baoxiong Jia</a><sup>7†</sup></span> <span><a href="https://junweiliang.me/" target="_blank" rel="noopener noreferrer">Junwei Liang</a><sup>1,6✉</sup></span> <span><a href="https://siyuanhuang.com/" target="_blank" rel="noopener noreferrer">Siyuan Huang</a><sup>7✉</sup></span></p>
+          <p class="author-names"><span><a href="https://iris0329.github.io/" target="_blank" rel="noopener noreferrer">Rong Li</a><sup>1,7*</sup></span> <span><a href="https://sj-li.com/" target="_blank" rel="noopener noreferrer">Shijie Li</a><sup>2*</sup></span> <span><a href="https://huangjy-pku.github.io/" target="_blank" rel="noopener noreferrer">Jiangyong Huang</a><sup>3,7</sup></span> <span><a href="https://ldkong.com/" target="_blank" rel="noopener noreferrer">Lingdong Kong</a><sup>4</sup></span> <span><a href="https://jiaming-zhou.github.io/" target="_blank" rel="noopener noreferrer">Jiaming Zhou</a><sup>1</sup></span> <span><a href="https://dylanorange.github.io/" target="_blank" rel="noopener noreferrer">Dongyue Lu</a><sup>5</sup></span> <span><a href="https://zeying-gong.github.io/" target="_blank" rel="noopener noreferrer">Zeying Gong</a><sup>1</sup></span> <span><a href="https://buzz-beater.github.io/" target="_blank" rel="noopener noreferrer">Baoxiong Jia</a><sup>7†✉</sup></span> <span><a href="https://junweiliang.me/" target="_blank" rel="noopener noreferrer">Junwei Liang</a><sup>1,6✉</sup></span> <span><a href="https://siyuanhuang.com/" target="_blank" rel="noopener noreferrer">Siyuan Huang</a><sup>7✉</sup></span></p>
           <p class="author-affils"><span><sup>1</sup>The Hong Kong University of Science and Technology (Guangzhou)</span> <span><sup>2</sup>Agency for Science, A*STAR</span> <span><sup>3</sup>Peking University</span> <span><sup>4</sup>Apple</span> <span><sup>5</sup>National University of Singapore</span> <span><sup>6</sup>The Hong Kong University of Science and Technology</span> <span><sup>7</sup>Beijing Institute for General Artificial Intelligence</span></p>
           <p class="author-notes"><sup>*</sup>Equal contribution &nbsp;·&nbsp; <sup>✉</sup>Corresponding authors &nbsp;·&nbsp; <sup>†</sup>Project lead</p>
           <div class="affil-logos" aria-label="Affiliations">
@@ -59,7 +61,7 @@
           <a class="button button-outline resource-button" href="https://github.com/iris0329/GeoReader" target="_blank" rel="noopener noreferrer"><span class="resource-icon resource-icon-code" aria-hidden="true">&lt;/&gt;</span> Code <span aria-hidden="true">↗</span></a>
           <span class="button button-outline button-unavailable resource-button" aria-label="arXiv paper link coming soon"><span class="resource-icon resource-icon-arxiv" aria-hidden="true">a</span> arXiv soon</span>
         </div>
-        <div class="hero-index" aria-hidden="true"><span>01 / 05</span><span>SCROLL TO EXPLORE</span></div>
+        <div class="hero-index" aria-hidden="true"><span>01 / 07</span><span>SCROLL TO EXPLORE</span></div>
       </section>
 
       <div class="story page-width">
@@ -72,6 +74,8 @@
           <a href="#data">04 &nbsp; Training data</a>
           <a href="#evidence">05 &nbsp; The evidence</a>
           <a href="#results">Results</a>
+          <a href="#attention">06 &nbsp; Attention</a>
+          <a href="#examples">07 &nbsp; Examples</a>
           <a href="#authors">Authors &amp; citation</a>
         </aside>
 
@@ -222,39 +226,40 @@
               </div>
             </div>
 
-            <div class="visualizations" aria-labelledby="visualizations-title">
-              <span class="section-label">VISUALIZATIONS</span>
-              <h3 id="visualizations-title">See the questions, geometry, and answers.</h3>
-              <p>The attention plot shows where answer tokens look in one question that both models answer correctly. Geometry-content interventions test whether GeoReader's answers depend on its tokens.</p>
+          </section>
 
+          <section id="attention" class="section" aria-labelledby="attention-title">
+            <span class="section-label">06 — ANSWER-TOKEN ATTENTION</span>
+            <h2 id="attention-title">Where the answer <em>looks.</em></h2>
+            <p class="lead">The attention plots show where answer tokens look in questions that both models answer correctly. Geometry-content interventions test whether GeoReader's answers depend on its tokens.</p>
               <div class="figure-frame visual-figure">
                 <div class="figure-toolbar"><span class="figure-number">FIGURE 03</span><span class="figure-title">ANSWER-TOKEN ATTENTION</span><a href="assets/answer-attention.webp" target="_blank" rel="noopener">Open image ↗</a></div>
                 <a class="figure-image-link" href="assets/answer-attention.webp" target="_blank" rel="noopener" aria-label="Open answer-token attention figure at full size"><img src="assets/answer-attention.webp" alt="A four-view shoe question and layerwise attention-share curves for geometry, RGB, and question tokens, comparing GeoReader with feature alignment." width="1194" height="501" loading="lazy" decoding="async" /></a>
                 <p class="figure-note">On this MindCube-Tiny example, GeoReader's answer tokens attend more to geometric tokens than the feature-alignment model's answer tokens attend to its latents.</p>
               </div>
+              <div class="figure-frame visual-figure">
+                <div class="figure-toolbar"><span class="figure-number">SUPPLEMENTARY FIGURE 09</span><span class="figure-title">AMONG · AROUND · ROTATION</span><a href="assets/attention-cases.webp" target="_blank" rel="noopener">Open image ↗</a></div>
+                <a class="figure-image-link" href="assets/attention-cases.webp" target="_blank" rel="noopener" aria-label="Open three attention cases at full size"><img src="assets/attention-cases.webp" alt="Three MindCube-Tiny examples with input images, questions, both models' correct answers, and layerwise attention shares for geometry, RGB, and question tokens." width="1194" height="1803" loading="lazy" decoding="async" /></a>
+                <p class="figure-note">One example from each MindCube-Tiny category. Both models answer all three correctly; the curves compare direct answer-token attention in these cases.</p>
+              </div>
+          </section>
 
+          <section id="examples" class="section" aria-labelledby="examples-title">
+            <span class="section-label">07 — QUALITATIVE EXAMPLES</span>
+            <h2 id="examples-title">Spatial answers with <em>predicted geometry.</em></h2>
+            <p class="lead">Correct answers and failure cases with geometry predicted from RGB by Depth Anything 3.</p>
               <div class="figure-frame visual-figure">
                 <div class="figure-toolbar"><span class="figure-number">FIGURE 04</span><span class="figure-title">SPATIAL ANSWERS WITH PREDICTED GEOMETRY</span><a href="assets/spatial-visualization.webp" target="_blank" rel="noopener">Open image ↗</a></div>
                 <a class="figure-image-link" href="assets/spatial-visualization.webp" target="_blank" rel="noopener" aria-label="Open spatial-answer visualization at full size"><img src="assets/spatial-visualization.webp" alt="Two MMSI-Bench cross-view questions answered correctly by GeoReader, with RGB views, questions, answers, and predicted-depth point clouds highlighting queried objects." width="1194" height="654" loading="lazy" decoding="async" /></a>
                 <p class="figure-note">Two correct MMSI-Bench answers with DA3 geometry. The point clouds on the right come from predicted depth; circles identify the objects named in each question.</p>
               </div>
-
               <div class="supplementary-visuals" aria-labelledby="supplementary-visuals-title">
-                <h3 id="supplementary-visuals-title">More visualizations from the supplement.</h3>
-                <p>Three attention cases, followed by correct responses and failure cases with predicted geometry.</p>
-                <div class="approach-tabs visual-tabs" role="tablist" aria-label="Supplementary visualizations">
-                  <button type="button" role="tab" id="tab-attention-cases" aria-controls="panel-attention-cases" aria-selected="true" tabindex="0"><span>09</span> Attention cases</button>
-                  <button type="button" role="tab" id="tab-correct-examples" aria-controls="panel-correct-examples" aria-selected="false" tabindex="-1"><span>10</span> Correct examples</button>
+                <h3 id="supplementary-visuals-title">More examples from the supplement.</h3>
+                <div class="approach-tabs visual-tabs" role="tablist" aria-label="Supplementary examples">
+                  <button type="button" role="tab" id="tab-correct-examples" aria-controls="panel-correct-examples" aria-selected="true" tabindex="0"><span>10</span> Correct examples</button>
                   <button type="button" role="tab" id="tab-failure-cases" aria-controls="panel-failure-cases" aria-selected="false" tabindex="-1"><span>11</span> Failure cases</button>
                 </div>
-                <div class="visual-panel" role="tabpanel" id="panel-attention-cases" aria-labelledby="tab-attention-cases">
-                  <div class="figure-frame visual-figure">
-                    <div class="figure-toolbar"><span class="figure-number">SUPPLEMENTARY FIGURE 09</span><span class="figure-title">AMONG · AROUND · ROTATION</span><a href="assets/attention-cases.webp" target="_blank" rel="noopener">Open image ↗</a></div>
-                    <a class="figure-image-link" href="assets/attention-cases.webp" target="_blank" rel="noopener" aria-label="Open three attention cases at full size"><img src="assets/attention-cases.webp" alt="Three MindCube-Tiny examples with input images, questions, both models' correct answers, and layerwise attention shares for geometry, RGB, and question tokens." width="1194" height="1803" loading="lazy" decoding="async" /></a>
-                    <p class="figure-note">One example from each MindCube-Tiny category. Both models answer all three correctly; the curves compare direct answer-token attention in these cases.</p>
-                  </div>
-                </div>
-                <div class="visual-panel" role="tabpanel" id="panel-correct-examples" aria-labelledby="tab-correct-examples" hidden>
+                <div class="visual-panel" role="tabpanel" id="panel-correct-examples" aria-labelledby="tab-correct-examples">
                   <div class="figure-frame visual-figure">
                     <div class="figure-toolbar"><span class="figure-number">SUPPLEMENTARY FIGURE 10</span><span class="figure-title">CORRECT RESPONSES</span><a href="assets/correct-examples.webp" target="_blank" rel="noopener">Open image ↗</a></div>
                     <a class="figure-image-link" href="assets/correct-examples.webp" target="_blank" rel="noopener" aria-label="Open correct-response examples at full size"><img src="assets/correct-examples.webp" alt="Three correct GeoReader responses with predicted geometry: viewpoint reasoning, relative depth, and view-specific reasoning." width="1194" height="1734" loading="lazy" decoding="async" /></a>
@@ -269,7 +274,6 @@
                   </div>
                 </div>
               </div>
-            </div>
           </section>
 
           <section id="authors" class="section authors-section" aria-labelledby="authors-title">
@@ -295,7 +299,7 @@
               </li>
               <li class="author-card">
                 <a class="author-photo-link" href="https://huangjy-pku.github.io/" target="_blank" rel="noopener noreferrer" aria-label="Jiangyong Huang homepage"><img src="assets/authors/jiangyong-huang.webp" alt="Portrait of Jiangyong Huang" width="68" height="68" loading="lazy" decoding="async" /></a>
-                <div class="author-card-info"><div class="author-card-name"><a href="https://huangjy-pku.github.io/" target="_blank" rel="noopener noreferrer">Jiangyong Huang</a><sup>3</sup></div>
+                <div class="author-card-info"><div class="author-card-name"><a href="https://huangjy-pku.github.io/" target="_blank" rel="noopener noreferrer">Jiangyong Huang</a><sup>3,7</sup></div>
                   <div class="author-links"><a href="https://huangjy-pku.github.io/" target="_blank" rel="noopener noreferrer" aria-label="Jiangyong Huang Homepage" title="Homepage"><svg aria-hidden="true"><use href="#author-home-icon"></use></svg></a><a href="https://scholar.google.com/citations?user=sBgDVNMAAAAJ" target="_blank" rel="noopener noreferrer" aria-label="Jiangyong Huang Google Scholar" title="Google Scholar"><svg aria-hidden="true"><use href="#author-scholar-icon"></use></svg></a><a href="https://github.com/huangjy-pku" target="_blank" rel="noopener noreferrer" aria-label="Jiangyong Huang GitHub" title="GitHub"><svg aria-hidden="true"><use href="#author-github-icon"></use></svg></a></div>
                 </div>
               </li>
@@ -325,7 +329,7 @@
               </li>
               <li class="author-card">
                 <a class="author-photo-link" href="https://buzz-beater.github.io/" target="_blank" rel="noopener noreferrer" aria-label="Baoxiong Jia homepage"><img src="assets/authors/baoxiong-jia.webp" alt="Portrait of Baoxiong Jia" width="68" height="68" loading="lazy" decoding="async" /></a>
-                <div class="author-card-info"><div class="author-card-name"><a href="https://buzz-beater.github.io/" target="_blank" rel="noopener noreferrer">Baoxiong Jia</a><sup>7†</sup></div>
+                <div class="author-card-info"><div class="author-card-name"><a href="https://buzz-beater.github.io/" target="_blank" rel="noopener noreferrer">Baoxiong Jia</a><sup>7†✉</sup></div>
                   <div class="author-links"><a href="https://buzz-beater.github.io/" target="_blank" rel="noopener noreferrer" aria-label="Baoxiong Jia Homepage" title="Homepage"><svg aria-hidden="true"><use href="#author-home-icon"></use></svg></a><a href="https://scholar.google.com/citations?user=qIBUK6sAAAAJ" target="_blank" rel="noopener noreferrer" aria-label="Baoxiong Jia Google Scholar" title="Google Scholar"><svg aria-hidden="true"><use href="#author-scholar-icon"></use></svg></a><a href="https://github.com/Buzz-Beater" target="_blank" rel="noopener noreferrer" aria-label="Baoxiong Jia GitHub" title="GitHub"><svg aria-hidden="true"><use href="#author-github-icon"></use></svg></a></div>
                 </div>
               </li>
