@@ -118,3 +118,7 @@ h1,h2{font-weight:700;letter-spacing:-.03em}.visualizations h3,.results h3{font-
 .abstract-emphasis{font-weight:800;color:var(--ink)}
 /* 作者反馈：图和表比正文宽很多。内容栏统一收到正文（Abstract）宽度 800px，图、表、展开块与分隔线都和文字左右对齐。 */
 .story-main{max-width:800px}
+/* 作者要求表格一律不能横向滑动：取消 table-wrap 的横向滚动，表格按容器宽度排；文字列（第一列）放不下时换行，数字列保持不换行。 */
+.table-wrap{overflow:visible}.result-table{width:100%;table-layout:auto}
+.result-table td:first-child,.result-table th:first-child{white-space:normal}
+.ablation-tables .result-table td,.ablation-tables .result-table th{padding-left:12px;padding-right:12px}
