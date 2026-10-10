@@ -57,8 +57,8 @@ h1,h2{font-weight:700;letter-spacing:-.03em}.approach-panel h3,.stage-card h3,.v
 /* Match paper tables: orange for each block's best value, gray for runner-up, and green block headings. */
 .sub-title{font-size:clamp(21px,1.7vw,25px)!important;font-weight:700;letter-spacing:-.01em;margin:44px 0 6px;color:var(--ink)}
 .paper-table td,.paper-table th{padding:9px 14px}.paper-table td.best{font-weight:800;background:#ffeedd;color:#18372f}.paper-table td.second{background:#eceeeb}
-.paper-table tr.block-head td{background:#eef4ef;color:var(--forest);font-weight:800;font-size:12.5px;letter-spacing:.06em;text-align:left;padding:8px 14px}
-.paper-table tr.family-head td{text-align:center;font-style:italic}
+.paper-table tr.block-head td{background:#eef4ef;color:var(--forest);font-weight:800;font-style:italic;font-size:12.5px;letter-spacing:.06em;text-align:left;padding:8px 14px}
+.paper-table tr.block-head td::before{content:"";display:inline-block;width:8px;height:8px;margin-right:9px;background:var(--green);vertical-align:1px}
 .paper-table tr.block-gap td{padding:0;height:0;border-bottom:1.5px solid #c9d8cb}
 .paper-table tr.ours td{background:transparent;color:inherit;font-weight:inherit}.paper-table tr.ours td.best{background:#ffeedd;font-weight:800}.paper-table tr.ours td.second{background:#eceeeb}
 .ours-name{font-weight:800;color:var(--green)}.paper-table .muted{color:#8a9a8f;font-size:.88em}.paper-table sup{font-size:.7em}
@@ -83,6 +83,7 @@ h1,h2{font-weight:700;letter-spacing:-.03em}.approach-panel h3,.stage-card h3,.v
   .result-table th:last-child,.result-table td:last-child{padding-right:7px}
   .result-table thead th{font-size:9px;letter-spacing:.02em}
   .paper-table tr.block-head td{font-size:10px;padding:6px 7px}
+  .paper-table tr.block-head td::before{width:6px;height:6px;margin-right:6px}
   .paper-table sup{font-size:.65em}
   .section p.table-caption{font-size:12.5px}
 }
