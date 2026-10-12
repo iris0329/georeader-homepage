@@ -93,10 +93,10 @@
               <a class="figure-image-link" href="assets/teaser.webp" target="_blank" rel="noopener" aria-label="Open figure at full size"><img src="assets/teaser.webp" alt="A spatial question about a living-room scene, followed by QA-only fusion, feature alignment, and GeoReader's two training stages." width="1620" height="843" /></a>
               <p class="figure-note"><strong>Figure 1.</strong> Three routes from RGB and estimated geometry to a spatial answer. <span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span> first makes geometric tokens readable to the VLM, then trains the VLM to use them.</p>
             </div>
-            <p>For example, zeroing the latents of a released feature-alignment checkpoint (3DThinker) leaves its MindCube-Tiny accuracy essentially unchanged (62.7 → 62.9), and its answer tokens barely attend to those latents (Figure 2).</p>
+            <p>For one released feature-alignment checkpoint, zeroing the latents leaves MindCube-Tiny accuracy essentially unchanged (62.7 → 62.9). Figure 2 shows that its answer tokens give little direct attention to those latents in one example.</p>
               <div class="figure-frame visual-figure">
 
-                <a class="figure-image-link" href="assets/answer-attention.webp" target="_blank" rel="noopener" aria-label="Open answer-token attention figure at full size"><img src="assets/answer-attention.webp" alt="A four-view shoe question and layerwise attention-share curves for geometry, RGB, and question tokens, comparing GeoReader with feature alignment." width="1194" height="501" loading="lazy" decoding="async" /></a>
+                <a class="figure-image-link" href="assets/answer-attention.webp" target="_blank" rel="noopener" aria-label="Open answer-token attention figure at full size"><img src="assets/answer-attention.webp" alt="A four-view shoe question and layerwise attention-share curves for geometry, RGB, and question tokens, comparing GeoReader with feature alignment." width="1196" height="515" loading="lazy" decoding="async" /></a>
                 <p class="figure-note"><strong>Figure 2.</strong> On this MindCube-Tiny question, <span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span>'s answer tokens attend more to geometric tokens than the feature-alignment model's answer tokens attend to its latents.</p>
               </div>
 
@@ -152,32 +152,32 @@
 <tr><td>HATCH</td><td>31.0</td><td>50.2</td><td>65.6</td><td>50.2</td></tr>
 <tr><td>SenseNova-SI</td><td>–</td><td>–</td><td>–</td><td>52.6</td></tr>
 <tr><td>DR-MV3D</td><td class="second">43.0</td><td>71.3</td><td>73.6</td><td>66.5</td></tr>
-<tr><td>3DThinker</td><td class="best">55.5</td><td class="second">81.8</td><td class="second">75.2</td><td class="second">75.2</td></tr>
+<tr><td>Feature alignment</td><td class="best">55.5</td><td class="second">81.8</td><td class="second">75.2</td><td class="second">75.2</td></tr>
 <tr class="ours"><td><span class="ours-name"><span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span></span></td><td>40.5</td><td class="best">90.3</td><td class="best">91.6</td><td class="best">81.1</td></tr>
 <tr class="block-head"><td colspan="5">Qwen2.5-VL · 7B</td></tr>
 <tr><td>Qwen2.5-VL</td><td>35.0</td><td>33.2</td><td>38.4</td><td>34.8</td></tr>
 <tr><td>SenseNova-SI</td><td>–</td><td>–</td><td>–</td><td>54.7</td></tr>
-<tr><td>3DThinker</td><td class="second">55.0</td><td class="second">83.0</td><td class="second">76.0</td><td class="second">76.0</td></tr>
+<tr><td>Feature alignment</td><td class="second">55.0</td><td class="second">83.0</td><td class="second">76.0</td><td class="second">76.0</td></tr>
 <tr class="ours"><td><span class="ours-name"><span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span></span></td><td class="best">90.0</td><td class="best">94.7</td><td class="best">92.4</td><td class="best">93.2</td></tr>
 <tr class="block-head"><td colspan="5">Qwen3-VL · 2B</td></tr>
 <tr><td>Qwen3-VL</td><td>29.5</td><td>33.3</td><td>47.2</td><td>35.9</td></tr>
 <tr><td>Spatial-TTT</td><td class="second">55.5</td><td>74.0</td><td class="second">89.8</td><td class="second">76.2</td></tr>
-<tr><td>3DThinker</td><td>53.0</td><td class="second">83.2</td><td>78.4</td><td class="second">76.2</td></tr>
+<tr><td>Feature alignment</td><td>53.0</td><td class="second">83.2</td><td>78.4</td><td class="second">76.2</td></tr>
 <tr class="ours"><td><span class="ours-name"><span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span></span></td><td class="best">59.5</td><td class="best">93.3</td><td class="best">91.6</td><td class="best">86.5</td></tr>
 <tr class="block-head"><td colspan="5">Qwen3-VL · 4B</td></tr>
 <tr><td>Qwen3-VL</td><td>25.0</td><td>25.3</td><td>43.6</td><td>29.6</td></tr>
-<tr><td>3DThinker</td><td class="second">55.0</td><td class="second">81.7</td><td class="second">78.4</td><td class="second">75.8</td></tr>
+<tr><td>Feature alignment</td><td class="second">55.0</td><td class="second">81.7</td><td class="second">78.4</td><td class="second">75.8</td></tr>
 <tr class="ours"><td><span class="ours-name"><span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span></span></td><td class="best">94.5</td><td class="best">96.2</td><td class="best">89.6</td><td class="best">94.3</td></tr>
 <tr class="block-head"><td colspan="5">Qwen3-VL · 8B</td></tr>
 <tr><td>Qwen3-VL</td><td>42.0</td><td>32.3</td><td>51.2</td><td>38.7</td></tr>
 <tr><td>SenseNova-SI</td><td class="second">79.5</td><td>73.2</td><td>70.4</td><td>73.8</td></tr>
-<tr><td>3DThinker</td><td>56.5</td><td class="second">82.5</td><td class="second">78.8</td><td>76.7</td></tr>
+<tr><td>Feature alignment</td><td>56.5</td><td class="second">82.5</td><td class="second">78.8</td><td>76.7</td></tr>
 <tr><td>GAMSI</td><td>–</td><td>–</td><td>–</td><td class="best">94.1</td></tr>
 <tr class="ours"><td><span class="ours-name"><span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span></span></td><td class="best">91.5</td><td class="best">93.3</td><td class="best">95.2</td><td class="second">93.4</td></tr>
 </tbody>
 </table>
             </div>
-            <p class="table-caption"><strong>Table 1.</strong> MindCube-Tiny accuracy (%). Per API or backbone-size block, <span class="key key-best">bold</span> marks the best and <span class="key key-second">gray</span> the runner-up (only with ≥ 3 models; base rows unshaded). <span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span> scores highest in four of the five backbone blocks. Literature results are taken from the cited papers (paper Sec. A.3.4).</p>
+            <p class="table-caption"><strong>Table 1.</strong> MindCube-Tiny accuracy (%). Per API or backbone-size block, <span class="key key-best">bold</span> marks the best and <span class="key key-second">gray</span> the runner-up (only with ≥ 3 models; base rows unshaded). <span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span> scores highest in four of the five backbone blocks. Full method names and sources for literature results are in the paper (Sec. A.3.4).</p>
 
             <h3 class="sub-title">Six spatial benchmarks</h3>
             <div class="table-wrap">
@@ -188,7 +188,7 @@
 <tr><td>Qwen2.5-VL-3B<sup>†</sup></td><td>27.3</td><td>39.5</td><td>70.5</td><td>27.9</td><td>36.1</td><td>25.5</td><td>37.8</td></tr>
 <tr><td>Spatial-MLLM-4B</td><td>47.3</td><td>48.4</td><td>73.8</td><td>35.1</td><td>43.6</td><td>31.5</td><td>46.6</td></tr>
 <tr><td>SpatialLadder-3B</td><td>45.7</td><td class="best">70.6</td><td>73.7</td><td>34.4</td><td>44.2</td><td>29.2</td><td>49.6</td></tr>
-<tr><td>3DThinker-3B</td><td class="best">59.1</td><td>60.2</td><td class="second">78.4</td><td class="second">58.2</td><td class="second">64.7</td><td class="best">41.9</td><td class="second">60.4</td></tr>
+<tr><td>Feature alignment · 3B</td><td class="best">59.1</td><td>60.2</td><td class="second">78.4</td><td class="second">58.2</td><td class="second">64.7</td><td class="best">41.9</td><td class="second">60.4</td></tr>
 <tr class="block-gap"><td colspan="8"></td></tr>
 <tr class="ours"><td><span class="ours-name"><span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span></span>-3B</td><td class="second">56.1</td><td class="second">70.0</td><td class="best">83.7</td><td class="best">59.1</td><td class="best">71.4</td><td class="second">41.2</td><td class="best">63.6</td></tr>
 <tr class="block-gap"><td colspan="8"></td></tr>
@@ -196,7 +196,7 @@
 <tr><td>SpaceR-7B</td><td>44.5</td><td>54.0</td><td>75.3</td><td>37.1</td><td>45.5</td><td>28.8</td><td>47.5</td></tr>
 <tr><td>ViLaSR-7B</td><td>45.4</td><td>53.9</td><td>77.1</td><td>37.6</td><td>46.1</td><td>30.2</td><td>48.4</td></tr>
 <tr><td>Video-R1</td><td>33.4</td><td>42.8</td><td>69.6</td><td>31.5</td><td>36.1</td><td>29.4</td><td>40.5</td></tr>
-<tr><td>3DThinker-7B</td><td class="best">63.7</td><td class="second">68.3</td><td class="second">81.1</td><td class="best">63.3</td><td class="second">68.6</td><td class="second">43.3</td><td class="second">64.7</td></tr>
+<tr><td>Feature alignment · 7B</td><td class="best">63.7</td><td class="second">68.3</td><td class="second">81.1</td><td class="best">63.3</td><td class="second">68.6</td><td class="second">43.3</td><td class="second">64.7</td></tr>
 <tr class="block-gap"><td colspan="8"></td></tr>
 <tr class="ours"><td><span class="ours-name"><span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span></span>-7B</td><td class="second">58.0</td><td class="best">72.3</td><td class="best">84.4</td><td class="second">61.4</td><td class="best">75.6</td><td class="best">45.5</td><td class="best">66.2</td></tr>
 <tr class="block-head"><td colspan="8">Qwen3-VL family</td></tr>
@@ -219,7 +219,7 @@
 </tbody>
 </table>
             </div>
-            <p class="table-caption"><strong>Table 2.</strong> Six-benchmark accuracy (%); Avg. is the mean. Per backbone-size block, <span class="key key-best">bold</span> marks the best and <span class="key key-second">gray</span> the runner-up (only with ≥ 3 models; base rows unshaded); <sup>†</sup> evaluated by us; <sup>*</sup> combined from two sources (paper Sec. A.3.4). <span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span> has the highest average in every block.</p>
+            <p class="table-caption"><strong>Table 2.</strong> Six-benchmark accuracy (%); Avg. is the mean. Per backbone-size block, <span class="key key-best">bold</span> marks the best and <span class="key key-second">gray</span> the runner-up (only with ≥ 3 models; base rows unshaded); <sup>†</sup> evaluated by us; <sup>*</sup> combined from two sources. Full method names and sources are in the paper (Sec. A.3.4). <span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span> has the highest average in every block.</p>
           </section>
 
           <section id="use" class="section" aria-labelledby="use-title">
@@ -236,7 +236,7 @@
                 </tbody>
               </table>
             </div>
-            <p class="table-caption"><strong>Table 3.</strong> MindCube-Tiny accuracy (%) under geometry interventions with Qwen2.5-VL-3B. <span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span> uses annotation-derived camera geometry; feature alignment is the released first-stage 3DThinker checkpoint, whose latents are zeroed or swapped across questions. Only <span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span> drops markedly.</p>
+            <p class="table-caption"><strong>Table 3.</strong> MindCube-Tiny accuracy (%) under geometry interventions with Qwen2.5-VL-3B. <span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span> uses annotation-derived camera geometry; the comparison uses one released first-stage feature-alignment checkpoint, whose latents are zeroed or swapped across questions. The full checkpoint citation and evaluation details are in the paper.</p>
 
             <h3 class="sub-title">Answer-token attention</h3>
             <p>The attention plots show where answer tokens look in questions that both models answer correctly; Figure 2 in the motivation shows one example, and the curves below cover one question from each MindCube-Tiny category. Geometry-content interventions test whether <span class="wordmark"><span class="wordmark-geo">Geo</span><span class="wordmark-reader">Reader</span></span>'s answers depend on its tokens.</p>
@@ -244,7 +244,7 @@
                 <summary>More attention curves · three question categories</summary>
                 <div class="figure-frame visual-figure">
 
-                  <a class="figure-image-link" href="assets/attention-cases.webp" target="_blank" rel="noopener" aria-label="Open three attention cases at full size"><img src="assets/attention-cases.webp" alt="Three MindCube-Tiny questions with input images, both models' correct answers, and layerwise attention shares for geometry, RGB, and question tokens." width="1194" height="1803" loading="lazy" decoding="async" /></a>
+                  <a class="figure-image-link" href="assets/attention-cases.webp" target="_blank" rel="noopener" aria-label="Open three attention cases at full size"><img src="assets/attention-cases.webp" alt="Three MindCube-Tiny questions with input images, both models' correct answers, and layerwise attention shares for geometry, RGB, and question tokens." width="1196" height="1861" loading="lazy" decoding="async" /></a>
                   <p class="figure-note"><strong>Figure 5.</strong> One question from each MindCube-Tiny category. Both models answer all three correctly; the curves compare direct answer-token attention in these cases.</p>
                 </div>
               </details>
