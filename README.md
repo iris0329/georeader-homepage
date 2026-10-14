@@ -6,7 +6,7 @@ Static homepage draft for the signed arXiv paper. This folder is independent of 
 python -m http.server 8765
 ```
 
-Then visit `http://localhost:8765/`. Pushes to `main` publish the static files through GitHub Actions at `https://iris0329.github.io/georeader-homepage/`. The arXiv button links to `https://arxiv.org/pdf/2610.18694`, and the Code button links to `https://github.com/iris0329/GeoReader`. This folder is intentionally kept outside the paper repositories and the arXiv source export.
+Then visit `http://localhost:8765/`. Pushes to `main` publish the static files through GitHub Actions at `https://iris0329.github.io/georeader-homepage/`. The arXiv button links to `https://arxiv.org/abs/2610.18694`, and the Code button links to `https://github.com/iris0329/GeoReader`. This folder is intentionally kept outside the paper repositories and the arXiv source export.
 
 Fonts: `assets/fonts/` holds Latin subsets of Lato Regular/Bold (OFL, same font as the paper figures).
 
